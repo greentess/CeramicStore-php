@@ -1,0 +1,754 @@
+
+
+
+.buti {
+  outline: 0;
+  border: 0;
+  background: none;
+  border: 1px solid #453535;
+  color: #515151;
+  text-transform: uppercase;
+  width: 40px;
+  height: 30px;
+  font-family: inherit;
+  margin-left: 5px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  font-size: 15px;
+  color: #46545f;
+  margin-left: 50px;
+  } 
+  .buti i {
+  color: #46545f;
+  }
+  .buti:hover {background: darken(rgb(255, 255, 255), 2%);
+  border: 1px solid #46545f;
+  color: #ffffff;
+  cursor: pointer;
+  background-color: #606e81a0;
+  }
+  .buti i:hover {
+  color: #ffffff;
+  }
+  
+  
+  input .btn-succes {
+    outline: 0;
+    border: 0;
+    background: none;
+    border: 1px solid #453535;
+    color: #515151;
+    text-transform: uppercase;
+    width: 40px;
+    height: 30px;
+    font-family: inherit;
+    margin-left: 5px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    font-size: 15px;
+    color: #46545f;
+    margin-left: 10px;
+    background-color: none;
+    } 
+    input .btn-succes:hover {background: darken(rgb(255, 255, 255), 2%);
+    border: 1px solid #510e0e;
+    color: #ffffff;
+    cursor: pointer;
+    background-color: #782a2aef;
+    }
+
+
+
+  .vl {
+    border-left: 1px solid rgb(152, 156, 144);
+    height: 40%;
+    position: absolute;
+    margin-left: 14%;
+    margin-top: 300px;
+    z-index: 20000;
+}
+/* .tr {
+    border-top: 1px solid rgb(152, 156, 144);
+    width: 30%;
+    position: absolute;
+    margin-left: 10%;
+    margin-top: 600px;
+    z-index: 20000;
+} */
+
+
+.form-table-zakaz{
+  width:50%;
+  margin-left: 80px;
+  margin-top: 45px;
+  float: left;
+}
+.form-table-zakaz1{
+    width:50%;
+    margin-left: 80px;
+    float: left;
+  }
+.form-table-zakaz .subtitle-zakaz{
+    text-align: left;
+    color: rgb(83, 90, 70);
+    font-family: Helvetica;
+    font-weight: 300;
+    font-size: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 0;
+    width: 100%;
+}
+.form-table-zakaz .subtitle-zakaz1{
+    text-align: left;
+    color: rgb(83, 90, 70);
+    font-family: Helvetica;
+    font-weight: 300;
+    font-size: 15px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 0;
+    width: 100%;
+}
+
+.table-zakaz{
+  border: 0;
+  width: 100%;
+  margin-top: 45px;
+  float: left;
+}
+.table-zakaz1{
+    border: 0;
+    width: 100%;
+    margin-top: 10px;
+    float: left;
+  }
+.table-zakaz .tr1{
+    border-bottom: 1px solid rgb(78, 76, 76) ;
+  }
+.table-zakaz1 .input-line1 {
+  color: rgb(52, 51, 51);
+  letter-spacing: 0.02rem;
+  border-top:1px solid rgb(78, 76, 76) ;
+  width: 100%;
+  font-weight: bolder ;
+  padding-left: 40px;
+  padding-top: 10px;
+}
+ .table-zakaz1 .input-line2 {
+  color: rgb(52, 51, 51);
+  letter-spacing: 0.02rem;
+  border:0px;
+  width: 100%;
+  font-weight: 1000 ;
+  border: 0;
+  padding-top: 20px;
+  padding-left: 40px;
+ 
+}
+
+.but_yes {
+    outline: 0;
+    border: 0;
+    background: none;
+    border: 1px solid #453535;
+    color: #515151;
+    text-transform: uppercase;
+    font-family: inherit;
+    margin-left: 5px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    font-size: 15px;
+    width: 40px;
+    height: 30px;
+    padding-left: -3px;
+    margin-left: 10px;
+} 
+.but_yes:hover {background: darken(rgb(255, 255, 255), 2%);
+    border: 1px solid #374134;
+    color: #ffffff;
+    cursor: pointer;
+    background-color: #4b5b4790;
+}
+
+.but_no {
+  outline: 0;
+  border: 0;
+  background: none;
+  border: 1px solid #453535;
+  color: #515151;
+  text-transform: uppercase;
+  font-family: inherit;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  font-size: 15px;
+  width: 40px;
+  height: 30px;
+  padding-left: -3px;
+  margin-left: 10px;
+} 
+.but_no:hover {background: darken(rgb(255, 255, 255), 2%);
+  border: 1px solid #6a2727;
+  color: #ffffff;
+  cursor: pointer;
+  background-color: #6a2727;
+}
+
+.mes2 {
+  text-align: center;
+  line-height: 1em;
+  font-weight: 100;
+  letter-spacing: 0px;
+  letter-spacing: 0.02rem;
+  color: rgb(69, 84, 64);
+  font-size: 15px;
+  margin-top: 20px;
+
+  position: relative;
+  font-size: 15px;
+  width: 100%;
+  margin-left: 20%;
+}
+
+.mes {
+  text-align: center;
+  line-height: 1em;
+  font-weight: 100;
+  letter-spacing: 0px;
+  letter-spacing: 0.02rem;
+  color: rgb(107, 32, 32);
+  font-size: 15px;
+  margin-top: 20px;
+
+  position: relative;
+  font-size: 15px;
+  width: 100%;
+  margin-left: 20%;
+}
+
+.button {
+  outline: 0;
+  border: 0;
+  background: none;
+  border: 1px solid #453535;
+  color: #515151;
+  text-transform: uppercase;
+  font-family: inherit;
+  margin-left: 5px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  font-size: 10px;
+  width: 60px;
+  height: 60px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+} 
+.button:hover {background: darken(rgb(255, 255, 255), 2%);
+  border: 1px solid #374134;
+  color: #ffffff;
+  cursor: pointer;
+  background-color: #4b5b4790;
+}
+
+.fa-input { font-family: FontAwesome, Helvetica; }
+
+.vl {
+  border-left: 1px solid rgb(152, 156, 144);
+  height: 40%;
+  position: absolute;
+  margin-left: 14%;
+  margin-top: 300px;
+  z-index: 20000;
+}
+/* .tr {
+  border-top: 1px solid rgb(152, 156, 144);
+  width: 30%;
+  position: absolute;
+  margin-left: 10%;
+  margin-top: 600px;
+  z-index: 20000;
+} */
+
+
+.form-table-zakaz{
+width:50%;
+margin-left: 80px;
+margin-top: 45px;
+float: left;
+}
+.form-table-zakaz1{
+  width:70%;
+  margin-left: 80px;
+  float: left;
+}
+.form-table-zakaz .subtitle-zakaz{
+  text-align: left;
+  color: rgb(83, 90, 70);
+  font-family: Helvetica;
+  font-weight: 300;
+  font-size: 20px;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 0;
+  width: 100%;
+}
+.form-table-zakaz .subtitle-zakaz1{
+  text-align: left;
+  color: rgb(83, 90, 70);
+  font-family: Helvetica;
+  font-weight: 300;
+  font-size: 15px;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 0;
+  width: 100%;
+}
+.table-zakaz{
+border: 0;
+width: 100%;
+margin-top: 45px;
+float: left;
+}
+.table-zakaz1{
+  border: 0;
+  width: 100%;
+  margin-top: 10px;
+  float: left;
+}
+.table-zakaz .tr1{
+  border-bottom: 1px solid rgb(78, 76, 76) ;
+}
+.table-zakaz1 .input-line1 {
+color: rgb(52, 51, 51);
+letter-spacing: 0.02rem;
+border-top:1px solid rgb(78, 76, 76) ;
+width: 100%;
+font-weight: bolder ;
+padding-left: 2%;
+padding-top: 10px;
+}
+.table-zakaz1 .input-line11 {
+  color: rgb(52, 51, 51);
+  letter-spacing: 0.02rem;
+  border-top:1px solid rgb(78, 76, 76) ;
+  width: 60px;
+  font-weight: bolder ;
+  padding-left: 2%;
+  padding-top: 10px;
+  }
+.table-zakaz1 .input-line2 {
+color: rgb(52, 51, 51);
+letter-spacing: 0.02rem;
+border:0px;
+width: 100%;
+font-weight: 1000 ;
+border: 0;
+padding-top: 20px;
+padding-left: 20px;
+
+}
+
+
+
+.table-z1 .input-line2 {
+  color: rgb(52, 51, 51);
+  letter-spacing: 0.02rem;
+  font-weight: lighter ;
+  }
+  .table-z2 .input-line2 {
+    color: rgb(52, 51, 51);
+    letter-spacing: 0.02rem;
+    width: 100%;
+    font-weight: bolder ;
+    padding-left: 20px;
+    }
+    .table-z3 .input-line2 {
+      color: rgb(52, 51, 51);
+      letter-spacing: 0.02rem;
+      font-weight: lighter ;
+      }
+
+
+
+
+.table-zakaz1 .input-line3 {
+color: rgb(52, 51, 51);
+letter-spacing: 0.02rem;
+border:0px;
+width: 50%;
+font-weight: 1000 ;
+border: 0;
+padding-top: 20px;
+padding-left: 20px;
+
+}
+
+
+.but {
+  outline: 0;
+  border: 0;
+  background: none;
+  border: 1px solid #453535;
+  color: #515151;
+  text-transform: uppercase;
+  width: 80%;
+  font-family: inherit;
+  margin-left: 5px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  font-size: 15px;
+  max-width: 300px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  min-width: 100px;
+} 
+.but:hover {background: darken(rgb(255, 255, 255), 2%);
+  border: 1px solid #374134;
+  color: #ffffff;
+  cursor: pointer;
+  background-color: #4b5b4790;
+}
+
+
+.but1 {
+  outline: 0;
+  border: 0;
+  background: none;
+  border: 1px solid #453535;
+  color: #515151;
+  text-transform: uppercase;
+  width: 80%;
+  font-family: inherit;
+  margin-left: 5px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  font-size: 15px;
+  max-width: 300px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  min-width: 100px;
+} 
+.but1:hover {background: darken(rgb(255, 255, 255), 2%);
+  border: 1px solid #7e261e;
+  color: #ffffff;
+  cursor: pointer;
+  background-color: #7e261ea0;
+}
+
+.buti {
+outline: 0;
+border: 0;
+background: none;
+border: 1px solid #453535;
+color: #515151;
+text-transform: uppercase;
+width: 40px;
+height: 30px;
+font-family: inherit;
+margin-left: 5px;
+transition: all 0.3s ease;
+font-weight: 500;
+font-size: 15px;
+color: #46545f;
+margin-left: 50px;
+} 
+.buti i {
+color: #46545f;
+}
+.buti:hover {background: darken(rgb(255, 255, 255), 2%);
+border: 1px solid #46545f;
+color: #ffffff;
+cursor: pointer;
+background-color: #606e81a0;
+}
+.buti i:hover {
+color: #ffffff;
+}
+
+
+.buti-d {
+  outline: 0;
+  border: 0;
+  background: none;
+  border: 1px solid #453535;
+  color: #515151;
+  text-transform: uppercase;
+  width: 40px;
+  height: 30px;
+  font-family: inherit;
+  margin-left: 5px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  font-size: 15px;
+  color: #46545f;
+  margin-left: 10px;
+  } 
+  .buti-d i {
+  color: #5d6f7d;
+  }
+  .buti-d:hover {background: darken(rgb(255, 255, 255), 2%);
+  border: 1px solid #510e0e;
+  color: #ffffff;
+  cursor: pointer;
+  background-color: #782a2aef;
+  }
+  .buti-d i:hover {
+  color: #ffffff;
+  }
+
+.but2 {
+outline: 0;
+border: 0;
+background: none;
+border: 1px solid #888383;
+color: #515151;
+text-transform: uppercase;
+width: 20%;
+font-family: inherit;
+margin-left: 5px;
+transition: all 0.3s ease;
+font-weight: 500;
+font-size: 15px;
+max-width: 200px;
+padding-top: 10px;
+padding-bottom: 10px;
+min-width: 120px;
+} 
+.but2:hover {background: darken(rgb(255, 255, 255), 2%);
+border: 1px solid #374134;
+color: #ffffff;
+cursor: pointer;
+background-color: #4b5b4790;
+}
+.mydiv{
+width: 60%;
+float: left;
+margin-left: 10%;
+}
+
+.form-table-zakaz .subtitle-zakaz1 form {
+  position: relative;
+  width: 150px;
+  margin: 0 ;
+}
+.form-table-zakaz .subtitle-zakaz1 .d1 {
+
+  outline: 0;
+  border: 0;
+  background: none;
+  border: 1px solid #45353500;
+  color: #515151;
+  text-transform: uppercase;
+  width: 150px;
+  font-family: inherit;
+
+  transition: all 0.3s ease;
+  font-weight: 500;
+  font-size: 15px;
+  max-width: 300px;
+  margin-right: 0px;
+  max-height: 40px;
+}
+.form-table-zakaz .subtitle-zakaz1 .d1 input {
+  max-width: 300px;
+  max-height: 40px;
+  width: 150px;
+  height: 40px;
+  border: 1px solid #4d4839;
+  border-radius: 5px;
+  outline: none;
+  color: #000000;
+  font-weight: 500;
+  font-size: 10px;
+  text-transform: uppercase;
+  font-family: inherit;
+background-color: #99a58300;
+}
+.form-table-zakaz .subtitle-zakaz1 .d1 button {
+  position: absolute; 
+  top: 0;
+  right: 0px;
+  left:110;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #4d4839;
+  border-left: none;
+  background: #99a583;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+}
+.form-table-zakaz .subtitle-zakaz1 .d1 button:before {
+  content: "\f002";
+  font-family: FontAwesome;
+  font-size: 20px;
+  color: #bbc2ae;
+}
+.form-table-zakaz .subtitle-zakaz11{
+  text-align: left;
+  color: rgb(83, 90, 70);
+  font-family: Helvetica;
+  font-weight: 300;
+  font-size: 15px;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 0;
+  width: 100%;
+
+
+}
+.but {
+outline: 0;
+border: 0;
+background: none;
+border: 1px solid #453535;
+color: #515151;
+text-transform: uppercase;
+width: 150px;
+font-family: inherit;
+
+transition: all 0.3s ease;
+font-weight: 500;
+font-size: 15px;
+max-width: 300px;
+padding-top: 10px;
+padding-bottom: 10px;
+margin: 0;
+} 
+.but:hover {background: darken(rgb(255, 255, 255), 2%);
+border: 1px solid #374134;
+color: #ffffff;
+cursor: pointer;
+background-color: #4b5b4790;
+}
+
+.form-table-zakaz100{
+  width:270px;
+  margin-left: 10px;
+  margin-top: 45px;
+  float: left;
+  border-right: 1px solid rgb(152, 156, 144);
+  }
+
+.form-table-zakaz100 .subtitle-zakaz1{
+  text-align: left;
+  color: rgb(83, 90, 70);
+  font-family: Helvetica;
+  font-weight: 300;
+  font-size: 15px;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 0;
+  width: 60%;
+}
+
+
+input[type=submit] {
+  background-color: rgb(236, 234, 230);
+  font-family: Helvetica;
+  font-size: 15px;
+  padding: 5px;
+  color: rgb(83, 90, 70);
+  border-bottom: 1px solid#374134;
+}
+input[type=file] {
+  background-color: rgb(236, 234, 230);
+  font-family: Helvetica;
+  font-size: 15px;
+  padding: 5px;
+  color: rgb(83, 90, 70);
+  
+}
+
+
+
+.example-2 .btn-tertiary{color:#555;padding:0;line-height:40px;width:145px;margin:auto;display:block;border:2px solid #555}
+.example-2 .btn-tertiary:hover,.example-2 .btn-tertiary:focus{color:#888;border-color:#888}
+.example-2 .input-file{width:.1px;height:.1px;opacity:0;overflow:hidden;position:absolute;z-index:-1}
+.example-2 .input-file + .js-labelFile{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:0 10px;cursor:pointer}
+.example-2 .input-file + .js-labelFile .icon:before{content:"\f093"}
+.example-2 .input-file + .js-labelFile.has-file .icon:before{content:"\f00c";color:#5AAC7B}
+
+
+
+@media (max-width: 1850px) {
+.mydiv{
+  width: 60%;
+  margin-left: 5%;
+}
+}
+@media (max-width: 1550px) {
+.mydiv{
+  width: 59%;
+  margin-left: 1%;
+}  
+}
+@media (max-width: 1400px) {
+.mydiv{
+  width: 69%;
+  margin-left: 10%;
+}  
+.form-table-zakaz1{
+  width: 69%;
+} 
+}
+@media (max-width: 1200px) {
+  .mydiv{
+    width: 50%;
+    margin-left: 5%;
+  }  
+  .form-table-zakaz1{
+    width: 100%;
+  } 
+}
+
+@media (max-width: 1000px) {
+  .mydiv{
+    width: 50%;
+    margin-left: 50px;
+  }  
+  .form-table-zakaz1{
+    width: 100%;
+    margin-left: 0px;
+  } 
+  .buti{
+    margin-left: 100px;
+  }
+  .form-table-zakaz{
+    width: 100%;
+    margin-left: 0px;
+  } 
+}
+  @media (max-width: 800px) {
+    .mydiv{
+      width: 40%;
+      margin-left: 50px;
+    }  
+    .form-table-zakaz1{
+      width: 100%;
+      margin-left: 0px;
+    } 
+    .buti{
+      margin-left: 130px;
+    }
+    .form-table-zakaz{
+      width: 100%;
+      margin-left: 0px;
+    } 
+}
+@media (max-width: 670px) {
+  .mydiv{
+    width: 30%;
+    margin-left: 50px;
+  }  
+  .form-table-zakaz1{
+    width: 100%;
+    margin-left: 0px;
+  } 
+  .buti{
+    margin-left: 160px;
+  }
+  .form-table-zakaz{
+    width: 100%;
+    margin-left: 0px;
+  } 
+}

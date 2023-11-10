@@ -1,0 +1,60 @@
+table { 
+    table-layout: fixed; 
+    position: relative; 
+    width: 100%; 
+    border-spacing: 0px; 
+    border-collapse: collapse;
+    } 
+.granica {
+    border-bottom: 1px solid rgb(156, 173, 154);
+    height: 7vw;
+    }
+.polosasverhu {
+    font-size: 0.55vw; 
+    text-align: center; 
+    height:35px;  
+    color:#ffffff; 
+    background: #92978c; 
+    letter-spacing: 0.145vw;
+    }
+.menu {
+    height: 110px; 
+    background: #eceae6; 
+    }
+.menu p.menu-links {
+    font-size: 0.8vw;
+    font-weight: lighter;
+    color:#3a2f2c;
+    transition: ease .25s;
+    font-family:  Helvetica;
+    text-decoration: underline;
+}
+.menu p.menu-links a {
+    display: inline-block;
+    text-decoration: none;
+    color:inherit;
+    transition: ease .25s;
+    font-family:  Helvetica;
+}
+.menu p.menu-links a:hover
+{
+    font-weight:bold;
+    color: #705e4e;
+    text-decoration:underline;
+    font-size: 1vw;
+}
+p.text
+{
+    border:2px #030303  solid; 
+    height:4%;  
+    width:26.5%; 
+    padding: 4% 5% 5% 2.5%; 
+    font-size: 1vw;
+    text-align: center;
+    
+}
+p.text:hover
+{
+    color: #705e4e;
+    border:2px #ac9d9d  solid;
+}

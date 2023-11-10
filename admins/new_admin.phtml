@@ -1,0 +1,345 @@
+<?$start=session_start();
+$log=$_SESSION["log"];
+if(!isset($log)){include("authorization.phtml");} else{
+    $admins=$_SESSION["admins"];
+    if($admins!=2){?>Ошибка! У вас нет доступа к добавлению нового сотрудника.<?} else{
+
+
+include("admin_header.phtml");
+include("connect.phtml");?>
+<html>
+<head>
+<link href="css/edit_cat_theme.css" rel="stylesheet">
+<link href="css/info_admin.css" rel="stylesheet">
+</head>
+
+
+<?
+
+
+$mykey=$_POST["mykey"];
+$im=$_POST["im"];
+$fam=$_POST["fam"];
+$otch=$_POST["otch"];
+$position=$_POST["position"];
+$birthday=$_POST["birthday"];
+$phone=$_POST["phone"];
+$mail=$_POST["mail"];
+$login=$_POST["login"];
+$pass=$_POST["pass"];
+
+$orders=$_POST["mode"];
+$items_cats_themes=$_POST["mode1"];
+$callbacks=$_POST["mode2"];
+$customers=$_POST["mode3"];
+$admins=$_POST["mode4"];
+
+    include("admin_cabinet_nav.phtml");   
+?>
+        <?function debug_to_console($data) {
+    $output = $data;
+    if (is_array($output))
+        $output = implode(',', $output);
+
+    echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
+}
+                if ($mykey==1){
+                    if($login!=""&$pass!=""&$orders!=""&$items_cats_themes!=""&$callbacks!=""&$customers!=""&$admins!="")
+                    {
+                     debug_to_console(".$im.",".$fam.",".$otch.",".$position.",".$birthday.",".$phone.",".$mail.",".$login.",".$pass.",".$orders.",".$items_cats_themes.",".$callbacks.",".$customers.",".$admins.");
+                        $strSQL1="INSERT INTO admins(im,fam,otch,position,birthday,phone,mail,login,pass,orders,items_cats_themes,callbacks,customers,admins) VALUES ('".$im."','".$fam."','".$otch."','".$position."','".$birthday."','".$phone."','".$mail."','".$login."','".$pass."','".$orders."','".$items_cats_themes."','".$callbacks."','".$customers."','".$admins."')";			
+                        $result1=mysqli_query($connection, $strSQL1) or die("Не могу выполнить запрос!");	               
+                        $message="<div class='mes2' style='margin-left:-50px;margin-top:30px;'><b>Новый сотрудник был успешно добавлен!</b> </div>";                 
+                    }
+                    else
+                        $message="<div class='mes'><b>Логин,пароль и параметры доступа нельзя оставить пустыми!</b> </div>"; 
+                }
+                    
+            print $message;	
+            
+        ?>
+
+
+        <form class="my-form" action=new_admin.phtml method=post>
+        <?
+            ?>
+                <div class="my-ddiv">
+                                <div class="title111">
+								<a href="admin_index.phtml?type=8">Вернуться к списку сотрудников</a>                                </div>
+                            <table class="tab-title">
+                            <tr>
+                                    <td class="td11">Карточка сотрудника</td>
+                                    <td class="td11">
+                                    <input class="but1" type="submit" value="Добавить">                                    </td>
+                            </tr>
+                            </table>
+                            <!-- <form class="my-form" action=cabinet.phtml?type=1 method=post> -->
+
+							<table class="form-table">
+							<tr>
+									<td>
+										<div class="input1">
+											Фамилия:
+										</div>
+									</td>
+									<td>
+                                        <input class='input'  name="fam" type="text" value=""></input>
+                                    </td>
+								</tr>
+								<tr>
+									<td>
+										<div class="input1">
+											Имя:
+										</div>
+									</td>
+									<td>
+                                        <input class='input' name="im"  type="text" value=""></input>
+                                    </td>
+								</tr>
+								<tr>
+									<td>
+										<div class="input1">
+											Отчество:
+										</div>
+									</td>
+									<td>
+                                        <input class='input'  name="otch" type="text" value=""></input>
+									</td>
+								</tr>
+
+
+								<tr>
+									<td>
+										<div class="input1">
+											Дата рождения:
+										</div>
+									</td>
+									<td>
+                                    <input class='input' name="birthday"  type="date" value=""></input>
+									</td>
+								</tr>
+
+								<tr>
+									<td>
+										<div class="input1">
+											Должность:
+										</div>
+									</td>
+									<td>
+                                    <input class='input' name="position" type="text" value=""></input>
+									</td>
+								</tr>
+
+								<tr>
+									<td>
+										<div class="input1">
+											Почта:
+										</div>
+									</td>
+									<td>
+                                    <input class='input' name="mail" type="text" value=""></input>
+									</td>
+								</tr>
+
+                                <tr>
+									<td>
+										<div class="input1">
+											Телефон:
+										</div>
+									</td>
+									<td>
+                                    <input class='input' name="phone" type="text" value=""></input>
+									</td>
+								</tr>
+
+                                <tr>
+									<td>
+										<div class="input1">
+											Логин:
+										</div>
+									</td>
+									<td>
+                                    <input class='input' name="login" type="text" value=""></input>
+									</td>
+								</tr>
+
+                                <tr>
+									<td>
+										<div class="input1">
+											Пароль:
+										</div>
+									</td>
+									<td>
+                                    <input class='input' name="pass" type="text" value=""></input>
+									</td>
+								</tr>
+							</table>
+
+							
+                            <table class="tab-title">
+                            <tr>
+                                    <td class="td11">Доступ сотрудника</td>
+                            </tr>
+                            </table>
+                            <!-- <form class="my-form" action=cabinet.phtml?type=1 method=post> -->
+
+							
+							<div class="dostup">
+				<table class="f">
+								<tr>
+									<td>
+										<div class="i">
+										&nbsp;Работа с заказами:
+										</div>
+									</td>
+								</tr>
+				</table>
+				
+				
+				<div class="container">
+					<div id="radios" >
+						<label for="нет доступа к заказам" class="material-icons">
+						<input type="radio" name="mode" id="нет доступа к заказам" value=0 />
+						<span><a><i class="fas fa-ban"></i></a></span>
+						</label>                
+						
+						<label for="просмотр заказов" class="material-icons">
+						<input type="radio" name="mode" id="просмотр заказов" value=1 />
+						<span><a><i class="fas fa-eye"></i></a></span>
+						</label>
+						
+						<label for="изменение заказов" class="material-icons">
+						<input type="radio" name="mode" id="изменение заказов" value=2 />
+						<span><a><i class="fas fa-feather"></i></a></span>
+						</label>
+					</div>
+				</div>
+
+
+				<table class="f">
+								<tr>
+									<td>
+										<div class="i">
+										&nbsp;Работа с товарами/категориями/тематиками:
+										</div>
+									</td>
+								</tr>
+				</table>
+				
+				<!-- <div class="block"></div> -->
+				<div class="container">
+					<div id="radios">
+						<label for="нет доступа к товарам" class="material-icons">
+						<input type="radio" name="mode1" id="нет доступа к товарам" value=0 />
+						<span><a><i class="fas fa-ban"></i></a></span>
+						</label>                
+						
+						<label for="просмотр товаров" class="material-icons">
+						<input  type="radio" name="mode1" id="просмотр товаров" value=1 />
+						<span><a><i class="fas fa-eye"></i></a></span>
+						</label>
+						
+						<label for="изменение товаров" class="material-icons">
+						<input  type="radio" name="mode1" id="изменение товаров" value=2 />
+						<span><a><i class="fas fa-feather"></i></a></span>
+						</label>
+					</div>
+				</div>
+				<table class="f">
+								<tr>
+									<td>
+										<div class="i">
+										&nbsp;Работа со звонками:
+										</div>
+									</td>
+								</tr>
+				</table>
+				<!-- <div class="block"></div> -->
+				<div class="container">
+					<div id="radios">
+						<label for="нет доступа к звонкам" class="material-icons">
+						<input type="radio" name="mode2" id="нет доступа к звонкам" value=0  />
+						<span><a><i class="fas fa-ban"></i></a></span>
+						</label>                
+						
+						<label for="просмотр звонков" class="material-icons">
+						<input  type="radio" name="mode2" id="просмотр звонков" value=1 />
+						<span><a><i class="fas fa-eye"></i></a></span>
+						</label>
+						
+						<label for="изменение звонков" class="material-icons">
+						<input  type="radio" name="mode2" id="изменение звонков" value=2  />
+						<span><a><i class="fas fa-feather"></i></a></span>
+						</label>
+					</div>
+				</div>
+				<table class="f">
+								<tr>
+									<td>
+										<div class="i">
+										&nbsp;Работа с покупателями:
+										</div>
+									</td>
+								</tr>
+				</table>
+				<!-- <div class="block"></div> -->
+				<div class="container">
+					<div id="radios">
+						<label for="нет доступа к покупателям" class="material-icons">
+						<input type="radio" name="mode3" id="нет доступа к покупателям" value=0  />
+						<span><a><i class="fas fa-ban"></i></a></span>
+						</label>                
+						
+						<label for="просмотр покупателей" class="material-icons">
+						<input  type="radio" name="mode3" id="просмотр покупателей" value=1  />
+						<span><a><i class="fas fa-eye"></i></a></span>
+						</label>
+						
+						<label for="изменение покупателей" class="material-icons">
+						<input  type="radio" name="mode3" id="изменение покупателей" value=2 />
+						<span><a><i class="fas fa-feather"></i></a></span>
+						</label>
+					</div>
+				</div>
+				<table class="f">
+								<tr>
+									<td>
+										<div class="i">
+										&nbsp;Работа с сотрудниками:
+										</div>
+									</td>
+								</tr>
+				</table>
+				<!-- <div class="block"></div> -->
+				<div class="container">
+					<div id="radios">
+						<label for="нет доступа к сотрудникам" class="material-icons">
+						<input type="radio" name="mode4" id="нет доступа к сотрудникам" value=0  />
+						<span><a><i class="fas fa-ban"></i></a></span>
+						</label>                
+						
+						<label for="просмотр сотрудников" class="material-icons">
+						<input  type="radio" name="mode4" id="просмотр сотрудников" value=1  />
+						<span><a><i class="fas fa-eye"></i></a></span>
+						</label>
+						
+						<label for="изменение сотрудников" class="material-icons">
+						<input  type="radio" name="mode4" id="изменение сотрудников" value=2  />
+						<span><a><i class="fas fa-feather"></i></a></span>
+						</label>
+					</div>
+				</div>
+
+				</div>
+
+
+
+							<input type=hidden value=1 name=mykey>
+                </div>
+        </form>
+
+
+<?
+include("admin_footer.phtml");
+?>
+<?}}?>

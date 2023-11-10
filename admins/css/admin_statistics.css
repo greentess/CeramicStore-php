@@ -1,0 +1,103 @@
+.vl {
+    border-left: 1px solid rgb(152, 156, 144);
+    height: 40%;
+    position: absolute;
+    margin-left: 14%;
+    margin-top: 300px;
+    z-index: 20000;
+}
+.tr {
+    border-top: 1px solid rgb(152, 156, 144);
+    width: 30%;
+    position: absolute;
+    margin-left: 10%;
+    margin-top: 600px;
+    z-index: 20000;
+}
+
+  .form-table-zakaz .subtitle-zakaz{
+    text-align: left;
+    color: rgb(83, 90, 70);
+    font-family: Helvetica;
+    font-weight: 300;
+    font-size: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 0;
+    width: 100%;
+}
+
+.form-table-zakaz{
+  float:left;
+  width:35%;
+  margin-left: 25%;
+  margin-top: 45px;
+
+}
+
+.table-zakaz{
+    border: 0;
+}
+.table-zakaz tr{
+    border-bottom:1px solid rgb(125, 144, 129);
+}
+.table-zakaz td{
+  background: none;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  line-height: 2.4em;
+  font-family: Helvetica;
+  font-size: 15px;
+  -webkit-transition: all .2s ease;
+  transition: all .2s ease;
+}
+.table-zakaz .input-line2 {
+  color: rgb(52, 51, 51);
+  letter-spacing: 3px;
+  width: 70%;
+  font-weight:lighter ;
+}
+
+.table-zakaz .input-line3 {
+    color: rgb(89, 106, 87);
+    letter-spacing: 0.02rem;
+    width: 100%;
+    font-weight: 600 ;
+    font-size: 20px;
+    width: 30%;
+}
+
+
+
+
+
+
+
+@media (max-width: 1000px) {
+    .vl
+    {
+    
+        margin-left:  5%;
+
+    }
+    .tr
+    {
+    
+        margin-left:  2%;
+
+    }
+
+}
+
+@media (max-width: 1400px) {
+  .table-zakaz1{
+    width: 50%;
+  }
+
+}
+@media (max-width: 970px) {
+  .table-zakaz1{
+    width: 100%;
+  }
+
+}

@@ -1,0 +1,58 @@
+<?include("shapka.phtml");?>
+<?include("connect.phtml");?>
+
+<?
+$strSQL1="SELECT * FROM categories ORDER BY name_cat";
+$result1=mysqli_query($connection,$strSQL1)or die("Не могу выполнить запрос!");
+$strSQL2="SELECT * FROM themes ORDER BY name_theme";
+$result2=mysqli_query($connection,$strSQL2)or die("Не могу выполнить запрос!");
+?>
+
+<html>
+  <head>
+    <link href="css/show.css" rel="stylesheet">
+  </head>
+
+  <?
+    $id_cat=$_GET["id_cat"];
+    $id_theme=$_GET["id_theme"];
+    $type=$_GET["type"];
+    include("connect.phtml");
+
+    if ($type==1)
+    {
+      $result=mysqli_query($connection,"SELECT name_cat FROM categories WHERE id_cat=".$id_cat)or die("Не могу выполнить запрос1!");
+      if($row=mysqli_fetch_array($result))
+      $title=$row["name_cat"];
+      $strSQL1="SELECT distinct id_item, name_item, price, weight, size, image, description, items.id_cat, name_cat, items.id_theme, name_theme FROM items, categories, themes WHERE   items.id_theme=themes.id_theme AND items.id_cat= categories.id_cat AND  items.id_cat=".$id_cat;
+    }
+
+    if ($type==2)
+    {
+      $result=mysqli_query($connection,"SELECT name_theme FROM themes WHERE id_theme=".$id_theme)or die("Не могу выполнить запрос1!");
+      if($row=mysqli_fetch_array($result))
+      $title=$row["name_theme"];
+      $strSQL1="SELECT distinct id_item, name_item, price, weight, size, image, description, items.id_cat, name_cat, items.id_theme, name_theme FROM items, categories, themes WHERE   items.id_theme=themes.id_theme AND items.id_cat= categories.id_cat AND  items.id_theme=".$id_theme;
+    }
+
+      $result1=mysqli_query($connection,$strSQL1) or die("Не могу выполнить запрос 2!");
+  ?>
+
+  <?
+      while($row=mysqli_fetch_array($result1))
+  {?>
+  <div class="product-item">
+
+    <img src="<?print $row["image"];?> ">
+      <div class="product-list">
+        <h3><?print $row["name_item"];?></h3>
+          <span class="price"><?print $row["price"];?> руб</span>
+          <a href="full_card.phtml?id_item=<?print $row["id_item"];?>" class="button">В корзину</a>
+      </div>
+  </div>	
+  <?}
+  ?>
+
+<?
+include("footer.phtml");
+?>

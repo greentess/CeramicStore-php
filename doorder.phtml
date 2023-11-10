@@ -1,0 +1,51 @@
+<?  $start=session_start();
+    $id_basket=$_COOKIE["id_basket"];
+	$title="��� �����";
+	$log=$_SESSION["log"];
+	$id=$_SESSION["id"]; 
+    $link = mysqli_connect("localhost","root","");
+    mysqli_set_charset($link, 'mb4');
+    mysqli_select_db($link,"ceramic");
+	if(!isset($log)) 
+    {
+        $message="<div class='subtitlediv'><div class='subdiv'><div class='subtitle2'><b>Вы не авторизованы.</b></div></div></div>";              
+    }
+	else
+	{
+		$strSQL1="SELECT COUNT(*) as count FROM basket_items WHERE id_basket='".$id_basket."'";
+		$result1=mysqli_query($link, $strSQL1) or die("Что-то сломалось2!");
+		$row=mysqli_fetch_array($result1);
+		if($row["count"]==0) 
+        {
+            $message="<div class='subtitlediv'><div class='subdiv'><div class='subtitle2'><b>У вас нет товаров в корзине!</b></div></div></div>";              
+        }
+		else
+		{
+					// 
+					$order=uniqid('OR');				
+					$strSQL="INSERT INTO orders(id_order, date_order, id_customer) VALUES ('".$order."',CURDATE(),".$id.")"; 					
+					mysqli_query($link, $strSQL) or die("Упс1!");
+					// 
+					$strSQL2="SELECT * FROM basket_items WHERE id_basket='".$id_basket."'";
+					$result=mysqli_query($link, $strSQL2) or die("Упс2!");
+					while ($row=mysqli_fetch_array($result))
+					{
+                        // 
+                        $strSQL3="INSERT INTO order_items (id_order, id_item, kolvo) VALUES ('".$order."',".$row["id_item"].",".$row["kolvo"].")";
+                        mysqli_query($link, $strSQL3) or die("Упс3!");
+					}
+					// 
+					$strSQL4="DELETE FROM basket_items WHERE id_basket='".$id_basket."'"; 
+					mysqli_query($link, $strSQL4) or die("Упс4!");
+	                $uniq_ID=uniqid("ID");
+	                setcookie("id_basket",$uniq_ID,time()+60*60*24*14);
+                    $message="<div class='subtitlediv'><div class='subdiv'><div class='subtitle'><b>Ваш заказ успешно оформлен!</b></div></div></div>";              
+				}
+			}
+    include("shapka.phtml");
+    print $message;
+	include("footer.phtml"); 
+?>
+    <head>
+    <link href="css/doorder.css" rel="stylesheet">
+    </head> 

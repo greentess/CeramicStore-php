@@ -1,0 +1,349 @@
+*
+{
+box-sizing: border-box;
+}
+.cat{
+    float:left;
+    width: 80vw;
+
+
+}
+ .product-item 
+{
+  float:left;
+  width: 17vw;
+  text-align: center;
+  margin-top: 4vw;
+  margin-left:5vw;
+  border-bottom: 2px solid #F5F5F5;
+  background: white;
+  font-family: "Helvetica";
+  transition: .3s ease-in;
+}
+/* .product-item:first-child
+{
+  float:left;
+  width: 17vw;
+  text-align: center;
+  margin-top: 4vw;
+  margin-left:20px;
+  border-bottom: 2px solid #F5F5F5;
+  background: white;
+  font-family: "Helvetica";
+  transition: .3s ease-in;
+}
+.product-item:nth-child(3n+1)
+{
+  float:left;
+  width: 17vw;
+  text-align: center;
+  margin-top: 4vw;
+  margin-left:20px;
+  border-bottom: 2px solid #F5F5F5;
+  background: white;
+  font-family: "Helvetica";
+  transition: .3s ease-in;
+} */
+ .product-item:hover 
+{
+  border-bottom: 2px solid #ab9084eb;
+}
+ .product-item img 
+{
+  display: block;
+  width: 17vw;
+}
+ .product-list 
+{
+  background: #fafafa;
+  padding: 2vw 0;
+  width:17vw;
+}
+ .product-list h3 
+{
+  font-size: 1.1vw;
+  font-weight: 4;
+  color: #444444;
+  margin: 0 0 1vw 0;
+}
+ .price 
+{
+  font-size: 1vw;
+  color: #705d43;
+  display: block;
+  margin-bottom: 1vw;
+}
+ .button
+{
+  text-decoration: none;
+  display: inline-block;
+  padding: 0 2vw;
+  background: #adbaa7eb;
+  color: white;
+  text-transform: uppercase;
+  font-size: 0.9vw;
+  line-height: 3vw;
+  transition: .3s ease-in;
+  margin-bottom: 2vh;
+}
+
+
+ .product-item .button:hover  
+{
+  background: #596851eb;
+}
+
+.button1
+{
+  text-decoration: none;
+  display: inline-block;
+  padding: 0 2vw;
+  background: #a88080;
+  color: white;
+  text-transform: uppercase;
+  font-size: 0.9vw;
+  line-height: 3vw;
+  transition: .3s ease-in;
+  margin-bottom: 2vh;
+}
+
+
+ .product-item .button1:hover 
+{
+  background: #802c2ceb;
+}
+
+.form-table-zakaz{
+    width:85%;
+    margin-left: 20px;
+    margin-top: 45px;
+    float: left;
+  }
+  .form-table-zakaz1{
+      width:50%;
+      margin-left: 20px;
+      float: left;
+    }
+  .form-table-zakaz .subtitle-zakaz{
+      text-align: left;
+      color: rgb(83, 90, 70);
+      font-family: Helvetica;
+      font-weight: 300;
+      font-size: 20px;
+      padding-bottom: 20px;
+      margin-bottom: 20px;
+      border-bottom: 0;
+      width: 100%;
+      
+  }
+  .form-table-zakaz .subtitle-zakaz11{
+    text-align: left;
+    color: rgb(83, 90, 70);
+    font-family: Helvetica;
+    font-weight: 300;
+    font-size: 15px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 0;
+    width: 100%;
+
+}
+.but {
+   outline: 0;
+   border: 0;
+   background: none;
+   border: 1px solid #453535;
+   color: #515151;
+   text-transform: uppercase;
+   width: 150px;
+   font-family: inherit;
+ 
+   transition: all 0.3s ease;
+   font-weight: 500;
+   font-size: 15px;
+   max-width: 300px;
+   padding-top: 10px;
+   padding-bottom: 10px;
+ } 
+ .but:hover {background: darken(rgb(255, 255, 255), 2%);
+   border: 1px solid #5c4f3f;
+   color: #ffffff;
+   cursor: pointer;
+   background-color: #856d60;
+ }
+   .form-table-zakaz .subtitle-zakaz1{
+       text-align: left;
+       color: rgb(83, 90, 70);
+       font-family: Helvetica;
+       font-weight: 300;
+       font-size: 15px;
+       padding-bottom: 20px;
+       margin-bottom: 20px;
+       border-bottom: 0;
+       width: 100%;
+       border-bottom: 1px solid rgb(83, 90, 70);
+   }
+   .form-table-zakaz1 .subtitle-zakaz1{
+     text-align: left;
+     color: rgb(83, 90, 70);
+     font-family: Helvetica;
+     font-weight: 300;
+     font-size: 15px;
+     padding-bottom: 20px;
+     margin-bottom: 20px;
+     border-bottom: 0;
+     width: 100%;
+     border-bottom: 1px solid rgb(83, 90, 70);
+ }
+
+
+
+.form-table-zakaz .subtitle-zakaz1 form {
+   position: relative;
+   width: 150px;
+   margin: 0 ;
+ }
+ .form-table-zakaz .subtitle-zakaz1 .d1 {
+ 
+   outline: 0;
+   border: 0;
+   background: none;
+   border: 1px solid #45353500;
+   color: #515151;
+   text-transform: uppercase;
+   width: 150px;
+   font-family: inherit;
+ 
+   transition: all 0.3s ease;
+   font-weight: 500;
+   font-size: 15px;
+   max-width: 300px;
+   margin-right: 0px;
+   max-height: 40px;
+ }
+ .form-table-zakaz .subtitle-zakaz1 .d1 input {
+   max-width: 300px;
+   max-height: 40px;
+   width: 150px;
+   height: 40px;
+   border: 1px solid #4d4839;
+   border-radius: 5px;
+   outline: none;
+   color: #000000;
+   font-weight: 500;
+   font-size: 10px;
+   text-transform: uppercase;
+   font-family: inherit;
+ background-color: #99a58300;
+ }
+ .form-table-zakaz .subtitle-zakaz1 .d1 button {
+   position: absolute; 
+   top: 0;
+   right: 0px;
+   left:110;
+   width: 40px;
+   height: 40px;
+   border: 1px solid #4d4839;
+   border-left: none;
+   background: #99a583;
+   border-radius: 0 5px 5px 0;
+   cursor: pointer;
+ }
+ .form-table-zakaz .subtitle-zakaz1 .d1 button:before {
+   content: "\f002";
+   font-family: FontAwesome;
+   font-size: 20px;
+   color: #bbc2ae;
+ }
+
+@media (max-width: 1850px) {
+   .form-table-zakaz{
+       width:80%;
+     }
+}
+@media (max-width: 1550px) {
+   .form-table-zakaz{
+       width:75%;
+     }
+     .cat{
+       float:left;
+       width: 76vw;
+     }    
+}
+@media (max-width: 1350px) {
+   .form-table-zakaz{
+       width:70%;
+     }
+     .cat{
+       float:left;
+       width: 68vw;
+     }   
+     .product-item 
+     {
+       float:left;
+       width: 17vw;
+       text-align: center;
+       margin-top: 4vw;
+       margin-left:4vw;
+       border-bottom: 2px solid #F5F5F5;
+       background: white;
+       font-family: "Helvetica";
+       transition: .3s ease-in;
+     }
+}
+@media (max-width: 1150px) {
+   .form-table-zakaz{
+       width:67%;
+     }
+     .product-item 
+     {
+       float:left;
+       width: 17vw;
+       text-align: center;
+       margin-top: 4vw;
+       margin-left:3vw;
+       border-bottom: 2px solid #F5F5F5;
+       background: white;
+       font-family: "Helvetica";
+       transition: .3s ease-in;
+     }
+}
+@media (max-width: 1000px) {
+   .form-table-zakaz{
+       width:60%;
+     }
+     .cat{
+       float:left;
+       width: 63vw;
+     } 
+}
+@media (max-width: 800px) {
+   .form-table-zakaz{
+       width:55%;
+     }
+     .product-item 
+     {
+       float:left;
+       width: 17vw;
+       text-align: center;
+       margin-top: 4vw;
+       margin-left:1.5vw;
+       border-bottom: 2px solid #F5F5F5;
+       background: white;
+       font-family: "Helvetica";
+       transition: .3s ease-in;
+     }
+     .cat{
+       float:left;
+       width: 59vw;
+     } 
+}
+@media (max-width: 650px) {
+   .form-table-zakaz{
+       width:45%;
+     }
+     .cat{
+       float:left;
+       width: 45vw;
+     } 
+}

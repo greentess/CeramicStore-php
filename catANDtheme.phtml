@@ -1,0 +1,58 @@
+<html >
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=cp1251" />
+<link href="css/catANDtheme.css" rel="stylesheet">
+</head>
+
+<body  bgcolor="#eceae6" style="font-family:Helvetica, sans-serif;">
+    <div class="main-content-wrapper">
+        <header class="header-area clearfix">
+            <nav class="my-nav">
+				<ul>
+					<h3 class="widget-title mb-30">Категории</h3>
+						<div class="catagories-menu">
+							<ul>
+                                <?
+                                while($row=mysqli_fetch_array($result1))
+                                    {?>
+                                    <li><a href="catalog.phtml?type=1&id_cat=<?print $row["id_cat"];?>">
+                                    <?print $row["name_cat"];?></a>
+                                    <?}
+                                ?>
+							</ul>
+						</div>
+						<br>
+						<br>
+
+					<h3 class="widget-title mb-30">Темы</h4>
+						<div class="catagories-menu">
+							<ul>
+                                <?
+                                while($row=mysqli_fetch_array($result2))
+                                    {?>
+                                    <li><a href="catalog.phtml?type=2&id_theme=<?print $row["id_theme"];?>">
+                                    <?print $row["name_theme"];?></a>
+                                    <?}
+                                ?>
+							</ul>
+						</div>
+				</ul>       
+            </nav>
+
+            <div class="my-btn-group">
+                <a href="catalog.phtml?type=3" class="btn my-btn">Полный каталог</a>
+            </div>
+
+
+            <div class="d1">
+                <form method="post" action="search.phtml">
+                    <input  id="search" name="search" type="text" placeholder="Поиск...">
+                    <button type="submit"></button>
+                </form>
+            </div>
+        </header>
+    </div>
+
+</body>
+</html>								

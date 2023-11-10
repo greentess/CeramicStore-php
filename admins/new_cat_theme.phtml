@@ -1,0 +1,111 @@
+<?$start=session_start();
+$log=$_SESSION["log"];
+if(!isset($log)){include("authorization.phtml");} else{
+    $items_cats_themes=$_SESSION["items_cats_themes"];
+    if($items_cats_themes!=2){?>Ошибка! У вас нет доступа к добавлению категорий и тем.<?} else{
+
+include("admin_header.phtml");
+include("connect.phtml");?>
+<html>
+<head>
+<link href="css/new_cat_theme.css" rel="stylesheet">
+</head>
+
+
+<?
+
+print $cat;print $mykey;
+$name_cat=$_POST["name_cat"];
+$name_theme=$_POST["name_theme"];
+
+$mykey=$_POST["mykey"];
+$cat = $_GET["cat"];
+$theme = $_GET["theme"];
+
+$title1="Товаров данной категории - ";
+$title2="Товаров данной тематики - ";
+include("admin_cabinet_nav.phtml");   
+?>
+
+    <?
+    if ($cat==1){
+                if ($mykey==1){
+                    if($name_cat!="")
+                    {
+                        $strSQL1="INSERT INTO categories(name_cat) VALUE ('".$name_cat."')";			
+                        $result1=mysqli_query($connection, $strSQL1) or die("Не могу выполнить запрос!");	               
+                        $message="<div class='mes2'><b>Новая категория успешно добавлена!</b> </div>";                 
+                    }
+                    else
+                        $message="<div class='mes'><b>Нельзя оставить название категории пустым!</b> </div>";                   
+                print $message;
+                }	
+    ?>
+
+        <form class="my-form" action=new_cat_theme.phtml?cat=1 method=post>
+            <div class="shopping-cart">
+                <div>
+                    <div class="title1">
+                    <a href="admin_index.phtml?type=6">Вернуться к списку категорий и тем</a>
+                    </div>
+                </div>
+                    <div class="item">
+                        <div class="description">
+                            <span1>
+                                <input class='input-line-h4' placeholder="Название категории" name="name_cat" type="text" value="<?if ($mykey==1) Echo $_POST['name_cat']?>"></input>
+                            </span1>
+                            <br>
+                            <input class="button" style="float:left;" type="submit" value="Добавить">  
+                        </div>                            
+                    </div>                 
+            </div>
+            <input type=hidden value=1 name=mykey>
+
+            </form>
+    <?
+    }
+    ?>
+
+
+    <?
+    if ($theme==1){
+                if ($mykey==1){
+                    if($name_theme!="")
+                    {
+                        $strSQL1="INSERT INTO themes(name_theme) VALUE ('".$name_theme."')";			
+                        $result1=mysqli_query($connection, $strSQL1) or die("Не могу выполнить запрос!");	               
+                        $message="<div class='mes2'><b>Новая тематика успешно добавлена!</b> </div>";                 
+                    }
+                    else
+                        $message="<div class='mes'><b>Нельзя оставить название темы пустым!</b> </div>";               
+                print $message;
+                }	
+    ?>
+
+        <form class="my-form" action=new_cat_theme.phtml?theme=1 method=post>
+            <div class="shopping-cart">
+                <div>
+                    <div class="title2">
+                    <a href="admin_index.phtml?type=6">Вернуться к списку категорий и тем</a>
+                    </div>
+                </div>
+                    <div class="item">
+                        <div class="description">
+                            <span1>
+                                <input class='input-line-h4' placeholder="Название темы" name="name_theme" type="text" value="<?if ($mykey==1) Echo $_POST['name_theme']?>"></input>
+                            </span1>
+                            <br>
+                            <input class="button" style="float:left;" type="submit" value="Добавить">  
+                        </div>                            
+                    </div>                 
+            </div>
+            <input type=hidden value=1 name=mykey>
+
+        </form>
+    <?
+    }
+    ?>
+<?
+include("admin_footer.phtml");
+?>
+<?}}?>

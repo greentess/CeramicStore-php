@@ -1,0 +1,41 @@
+<? $start = session_start();
+include("connect.phtml");
+$log = $_SESSION["log"];
+$id = $row["id_admin"];
+$orders = $_SESSION["orders"];
+$items_cats_themes = $_SESSION["items_cats_themes"];
+$callbacks = $_SESSION["callbacks"];
+$customers = $_SESSION["customers"];
+$admins = $_SESSION["admins"];
+$hidden = 'hidden';
+?>
+<html>
+
+<head>
+ <link href="css/admin_cabinet_nav.css" rel="stylesheet">
+</head>
+
+<body bgcolor="#92978c" style="font-family:Helvetica, sans-serif;">
+ <? if (!isset($log)) {
+ } else { ?>
+  <div class="content">
+   <header class="menu">
+    <nav class="my-nav">
+     <ul>
+      <li><a href="admin_index.phtml?type=1">Мои данные</a></li>
+      <li <? if ($orders == 0) print $hidden; ?>><a href="admin_index.phtml?type=2">Заказы</a></li>
+      <li <? if ($items_cats_themes == 0) {
+           print $hidden;
+          } ?>><a href="admin_index.phtml?type=3">Товары</a></li>
+      <li <? if ($items_cats_themes == 0) print $hidden; ?>><a href="admin_index.phtml?type=6">Категории и Темы</a></li>
+      <li <? if ($callbacks == 0) print $hidden; ?>><a href="change_callbacks.phtml">Звонки</a></li>
+      <li <? if ($customers == 0) print $hidden; ?>><a href="admin_index.phtml?type=7">Клиенты</a></li>
+      <li <? if ($admins == 0) print $hidden; ?>><a href="admin_index.phtml?type=8">Сотрудники</a></li>
+     </ul>
+    </nav>
+   </header>
+  </div>
+ <? } ?>
+</body>
+
+</html>								

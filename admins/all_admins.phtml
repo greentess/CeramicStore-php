@@ -1,0 +1,159 @@
+<? $start = session_start();
+$log = $_SESSION["log"];
+if (!isset($log)) {
+ include("authorization.phtml");
+} else {
+ $admins = $_SESSION["admins"];
+ if ($admins == 0) { ?>Ошибка! У вас нет доступа к списку покупателей.<? } else {
+ include("connect.phtml"); ?>
+<html>
+
+<head>
+ <link href="css/all_admins.css" rel="stylesheet">
+</head>
+
+<body bgcolor="#d9d9d9" style="font-family:Helvetica">
+
+ <?
+   $query1 = mysqli_query($connection, "SELECT * FROM admins");
+   $result1 = mysqli_num_rows($query1);
+ ?>
+
+ <div class="mydiv">
+  <table class="form-table-zakaz">
+   <tr>
+    <td class="subtitle-zakaz">
+     Сотрудники<br>
+    </td>
+   </tr>
+   <tr>
+    <td class="subtitle-zakaz1">
+     Всего сотрудников - <? print $result1; ?>
+    </td>
+   </tr>
+   <? if ($admins == 2) { ?>
+    <tr>
+     <td class="subtitle-zakaz11">
+      <a href="new_admin.phtml"><button class="but">Добавить</button></a>
+     </td>
+    </tr>
+   <? } ?>
+   <tr>
+    <td class="subtitle-zakaz1">
+     <div class="d1">
+      <form method="post" action="admin_index.phtml?type=10">
+       <input id="search" name="search" type="text" placeholder="Искать здесь...">
+       <button type="submit"></button>
+      </form>
+     </div>
+    </td>
+   </tr>
+  </table>
+  <table class="form-table-zakaz1">
+   <tr>
+    <td <table width="100%" align="right">
+     <?
+      $res1 = mysqli_query($connection, "SELECT * FROM admins");
+       while ($row1 = mysqli_fetch_array($res1)) {
+     ?>
+      <table class="table-zakaz1">
+       <tr style="height: 70px;">
+        <td class="input-line1" style="border-top: none;color:dimgrey; vertical-align: bottom;">
+         ID: <?= $row1["id_admin"] ?>
+        </td>
+        <td class="input-line3">
+         <div class="d-polosa"><a href="info_admin.phtml?id_admin=<? print $row1["id_admin"]; ?>"><button class="butii"><a href="info_admin.phtml?id_admin=<? print $row1["id_admin"]; ?>"><i class="fas fa-info"></i></a></button></a></div>
+        </td>
+       </tr>
+      </table>
+      <table class="table-zakaz1">
+       <tr>
+        <? if ($admins == 2) { ?>
+         <td class="input-line11">
+          <div class="d-polosa"> <a href="del_admin.phtml?id_admin=<? print $row1["id_admin"]; ?>"><button class="buti-d"><a href="del_admin.phtml?id_admin=<? print $row1["id_admin"]; ?>" style="font-size: 19px; margin-bottom: 5px;"><i class="fas fa-user-minus"></i></a><br></button></a></div>
+         </td>
+        <? } ?>
+        <td class="input-line1">
+         Логин: <?= $row1["login"] ?>
+        </td>
+
+       </tr>
+      </table>
+      <table class="table-z1">
+       <tr>
+        <td class="input-line2">
+        </td>
+        <td class="input-line2">
+        </td>
+    </td>
+    <td class="input-line2">
+     <?= $row1["phone"] ?>
+    </td>
+    <? if ($admins == 2) { ?>
+     <? if ($row1["phone"] != '') { ?>
+      <td class="input-line2">
+       <div class="d-polosa"><button class="buti"><a style="font-size: 19px;" href="tel:+79874162330"><i class="fas fa-phone"></i></a><br></button></div>
+      </td>
+    <? }
+      } ?>
+   </tr>
+  </table>
+  <table class="table-z2">
+   <tr>
+
+    <td class="input-line2">
+     <?= $row1["fam"] ?> <?= $row1["im"] ?> <?= $row1["otch"] ?>
+    </td>
+
+   </tr>
+  </table>
+  <table class="table-z3">
+   <tr>
+    <td class="input-line2">
+    </td>
+    <td class="input-line2">
+    </td>
+    <td class="input-line2">
+     <?= $row1["mail"] ?>
+    </td>
+    <? if ($admins == 2) { ?>
+     <? if ($row1["mail"] != '') { ?>
+      <td class="input-line2">
+       <div class="d-polosa"><button class="buti"><a style="font-size: 19px;" href="mailto:<? print $row1["mail"] ?>?subject=Студия%20керамики%20ceramic%20vibes."><i class="fas fa-envelope"></i></a><br></button></div>
+      </td>
+    <? }
+      } ?>
+   </tr>
+   <tr>
+    <td></td>
+   </tr>
+  </table>
+  <table class="table-z2">
+   <tr>
+
+    <td class="input-line2">
+     <?= $row1["position"] ?>
+    </td>
+
+   </tr>
+  </table>
+ <? } ?>
+
+ </table>
+
+ </td>
+ </tr>
+
+ </table>
+ <table>
+  <tr>
+   <td><br><br><br><br><br><br></td>
+  </tr>
+ </table>
+ </div>
+
+</body>
+
+</html>
+<? }
+} ?>

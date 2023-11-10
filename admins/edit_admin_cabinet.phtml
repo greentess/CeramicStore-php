@@ -1,0 +1,153 @@
+<? include("admin_header.phtml");
+include("connect.phtml"); ?>
+<html>
+
+<head>
+ <link href="css/edit_cat_theme.css" rel="stylesheet">
+ <link href="css/info_admin.css" rel="stylesheet">
+</head>
+
+
+<?
+$id_admin = $_GET["id_admin"];
+
+$mykey = $_POST["mykey"];
+$im = $_POST["im"];
+$fam = $_POST["fam"];
+$otch = $_POST["otch"];
+$birthday = $_POST["birthday"];
+$phone = $_POST["phone"];
+$mail = $_POST["mail"];
+
+include("admin_cabinet_nav.phtml");
+?>
+
+<?
+
+$strSQL = "SELECT * FROM admins  WHERE id_admin='" . $id_admin . "'";
+$result = mysqli_query($connection, $strSQL) or die("Не могу выполнить запрос!");
+if ($row = mysqli_fetch_array($result)) {
+ if ($mykey == 1) {
+  if ($im != "" & $fam != "" & $otch != "" & $birthday != "" & $mail != "" & $phone != "") {
+   $strSQL1 = "UPDATE admins SET im='" . $im . "',fam='" . $fam . "',otch='" . $otch . "',birthday='" . $birthday . "',phone='" . $phone . "',mail='" . $mail . "'  WHERE id_admin=" . $id_admin;
+   $result1 = mysqli_query($connection, $strSQL1) or die("Не могу выполнить запрос!");
+   $message = "<div class='mes2' style='margin-top:20px; margin-left:0px;'><b>Изменение данных выполнено успешно!</b> </div>";
+  } else
+   $message = "<div class='mes' style='margin-top:20px; margin-left:0px;'><b>Заполните все пустые поля!</b> </div>";
+ }
+
+ print $message;
+}
+?>
+
+
+<form class="my-form" action=edit_admin_cabinet.phtml?id_admin=<? print $id_admin; ?> method=post>
+ <?
+
+ $strSQL1 = "SELECT * FROM admins WHERE id_admin='" . $id_admin . "'";
+ $result1 = mysqli_query($connection, $strSQL1) or die("Не могу выполнить запрос2!");
+ if ($row = mysqli_fetch_array($result1)) {
+ ?>
+  <div class="my-ddiv">
+   <div class="title111">
+    <a href="admin_index.phtml?type=1">Вернуться к моим данным</a>
+   </div>
+   <table class="tab-title">
+    <tr>
+     <td class="td11">Моя карточка сотрудника</td>
+     <td class="td11">
+      <input class="but1" type="submit" value="Сохранить">
+     </td>
+    </tr>
+   </table>
+   <!-- <form class="my-form" action=cabinet.phtml?type=1 method=post> -->
+
+   <table class="form-table">
+    <tr>
+     <td>
+      <div class="input1">
+       Фамилия:
+      </div>
+     </td>
+     <td>
+      <input class='input' name="fam" type="text" value="<? if ($mykey == 1) echo $_POST['fam'];
+       else print $row["fam"]; ?>"></input>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <div class="input1">
+       Имя:
+      </div>
+     </td>
+     <td>
+      <input class='input' name="im" type="text" value="<? if ($mykey == 1) echo $_POST['im'];
+        else print $row["im"]; ?>"></input>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <div class="input1">
+       Отчество:
+      </div>
+     </td>
+     <td>
+      <input class='input' name="otch" type="text" value="<? if ($mykey == 1) echo $_POST['otch'];
+        else print $row["otch"]; ?>"></input>
+     </td>
+    </tr>
+
+    <tr>
+     <td>
+      <div class="input1">
+       Дата рождения:
+      </div>
+     </td>
+     <td>
+      <input class='input' name="birthday" type="date" value="<? if ($mykey == 1) echo $_POST['birthday'];
+        else print $row["birthday"]; ?>"></input>
+     </td>
+    </tr>
+
+
+
+    <tr>
+     <td>
+      <div class="input1">
+       Почта:
+      </div>
+     </td>
+     <td>
+      <input class='input' name="mail" type="text" value="<? if ($mykey == 1) echo $_POST['mail'];
+        else print $row["mail"]; ?>"></input>
+     </td>
+    </tr>
+
+    <tr>
+     <td>
+      <div class="input1">
+       Телефон:
+      </div>
+     </td>
+     <td>
+      <input class='input' name="phone" type="text" value="<? if ($mykey == 1) echo $_POST['phone'];
+       else print $row["phone"]; ?>"></input>
+     </td>
+    </tr>
+
+
+   </table>
+
+   <input type=hidden value=1 name=mykey>
+  </div>
+ <?
+ }
+ ?>
+</form>
+<?
+
+?>
+
+<?
+include("admin_footer.phtml");
+?>

@@ -1,0 +1,154 @@
+<? $start = session_start();
+$log = $_SESSION["log"];
+if (!isset($log)) {
+ include("authorization.phtml");
+} else {
+ $customers = $_SESSION["customers"];
+ if ($customers == 0) { ?>Ошибка! У вас нет доступа к списку покупателей.<? } else {
+ include("connect.phtml"); ?>
+<html>
+
+<head>
+ <link href="css/all_customers.css" rel="stylesheet">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+</head>
+
+<body bgcolor="#d9d9d9" style="font-family:Helvetica">
+
+ <?
+$query1 = mysqli_query($connection, "SELECT * FROM customers");
+$result1 = mysqli_num_rows($query1);
+ ?>
+
+ <table class="form-table-zakaz100">
+  <tr>
+   <td class="subtitle-zakaz1">
+    <form method="post" action="to_excel.php?tab=5">
+     <a><i class="fas fa-download" style="margin-left: 14px;color:#555;"></i></a><input type="submit" name="export" class="btn btn-success" value="Экспорт" />
+    </form>
+   </td>
+  </tr>
+  <tr>
+   <form method="post" action="from_excel.php?tab=5" enctype="multipart/form-data">
+    <td class="subtitle-zakaz1">
+     <div class="example-2">
+      <div class="form-group">
+       <input type="file" name="excel" id="excel" class="input-file">
+       <label for="excel" class="btn btn-tertiary js-labelFile">
+        <i class="icon fa fa-check"></i>
+        <span class="js-fileName">Загрузить файл</span>
+       </label>
+      </div>
+     </div>
+    </td>
+    <td class="subtitle-zakaz1">
+     <input type="submit" name="import" value="Импорт" style="margin-left: 10px; text-align: center;" />
+    </td>
+   </form>
+  </tr>
+ </table>
+ <div class="mydiv">
+  <table class="form-table-zakaz">
+   <tr>
+    <td class="subtitle-zakaz">
+     Покупатели<br>
+    </td>
+   </tr>
+   <tr>
+    <td class="subtitle-zakaz1">
+     Всего покупателей - <? print $result1; ?>
+    </td>
+   </tr>
+   <tr>
+    <td><br><br></td>
+   </tr>
+  </table>
+  <table class="form-table-zakaz1">
+   <tr>
+    <td <table width="100%" align="right">
+     <?
+    $res1 = mysqli_query($connection, "SELECT * FROM customers");
+    while ($row1 = mysqli_fetch_array($res1)) {
+     ?>
+      <table class="table-zakaz1">
+       <tr>
+        <td class="input-line1" style="border-top: none;padding-top: 50px;color:dimgrey;">
+         ID: <?= $row1["id_customer"] ?>
+        </td>
+       </tr>
+      </table>
+      <table class="table-zakaz1">
+       <tr>
+        <? if ($customers == 2) { ?>
+         <td class="input-line11">
+          <div class="d-polosa"> <a href="del_customer.phtml?id_customer=<? print $row1["id_customer"]; ?>"><button class="buti-d"><a href="del_customer.phtml?id_customer=<? print $row1["id_customer"]; ?>" style="font-size: 19px; margin-bottom: 5px;"><i class="fas fa-user-minus"></i></a><br></button></a></div>
+         </td>
+        <? } ?>
+        <td class="input-line1">
+         Логин: <?= $row1["login"] ?>
+        </td>
+
+
+       </tr>
+      </table>
+      <table class="table-z1">
+       <tr>
+        <td class="input-line2">
+        </td>
+        <td class="input-line2">
+        </td>
+    </td>
+    <td class="input-line2">
+     <?= $row1["phone"] ?>
+    </td>
+    <? if ($customers == 2) { ?>
+     <? if ($row1["phone"] != '') { ?>
+      <td class="input-line2">
+       <div class="d-polosa"><button class="buti"><a style="font-size: 19px;" href="tel:+79874162330"><i class="fas fa-phone"></i></a><br></button></div>
+      </td>
+    <? }
+ } ?>
+   </tr>
+  </table>
+  <table class="table-z2">
+   <tr>
+    <td class="input-line2">
+     <?= $row1["fam"] ?> <?= $row1["im"] ?>
+    </td>
+   </tr>
+  </table>
+  <table class="table-z3">
+   <tr>
+    <td class="input-line2">
+    </td>
+    <td class="input-line2">
+    </td>
+    <td class="input-line2">
+     <?= $row1["mail"] ?>
+    </td>
+    <? if ($customers == 2) { ?>
+     <? if ($row1["mail"] != '') { ?>
+      <td class="input-line2">
+       <div class="d-polosa"><button class="buti"><a style="font-size: 19px;" href="mailto:<? print $row1["mail"] ?>?subject=Студия%20керамики%20ceramic%20vibes&Body=Здравствуйте.%0D%0AМы%20обновили%20ассортимент%20нашей%20студии.%20Ждем%20Вас%20в%20нашем%20онлайн-магазине."><i class="fas fa-envelope"></i></a><br></button></div>
+      </td>
+    <? }
+   } ?>
+   </tr>
+  </table>
+ <? } ?>
+ </table>
+ </td>
+ </tr>
+ </table>
+ <table>
+  <tr>
+   <td><br><br><br><br><br><br></td>
+  </tr>
+ </table>
+ </div>
+
+</body>
+
+</html>
+<? }
+  } ?>

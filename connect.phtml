@@ -1,0 +1,6 @@
+<?
+ $connection = mysqli_connect("localhost","root","") or die("Не вышло подключить MySQL!");
+ mysqli_set_charset($connection, 'mb4');
+ mysqli_select_db($connection,"ceramic") or die ("Что-то не так с базой!");
+?>	
+								

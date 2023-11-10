@@ -1,0 +1,275 @@
+* {
+    box-sizing: border-box;
+  }
+   
+  html,
+  body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    background-color: #eceae6;
+    font-family: 'Roboto', sans-serif;
+  }
+  .but {
+    outline: 0;
+    border: 0;
+    background: none;
+    border: 1px solid #d9d9d9;
+    padding: 8px 0px;
+    color: #515151;
+    text-transform: uppercase;
+    width: 35vw;
+    font-family: inherit;
+    margin-top: 20px;
+    margin-left: 30%;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    font-size: 15px;
+} 
+.but:hover {background: darken(white, 2%);
+    border: 1px solid #7a8877;
+    color: #597254;
+    cursor: pointer;
+}
+.d-polosa{
+  border-top: 1px solid #8996a1;
+  width: 100%;
+}
+  .empcart {
+    width: 55%;
+    margin: 0 auto 1vh auto;
+    background: #FFFFFF;
+    box-shadow: 1px 2px 3px 0px rgba(0,0,0,0.10);
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    color: #a9b6b3;
+    font-size: 3vh;
+    text-align: center;
+    vertical-align: middle;
+    height: 55%;
+    margin-top: 6vh;
+    margin-bottom: 6vh;
+    padding-top: 200px;
+  }
+  .shopping-cart {
+    width: 85%;
+    margin: 0 auto 1vh auto;
+    background: #FFFFFF;
+    box-shadow: 1px 2px 3px 0px rgba(0,0,0,0.10);
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .title {
+    height: 5vh;
+    border-bottom: 1px solid #E1E8EE;
+    padding: 20px 30px;
+    color: #5E6977;
+    font-size: 2vh;
+    font-weight: 400;
+    width: 90%;
+    float: left !important;
+  }
+  .del {
+    height: 5vh;
+    border-bottom: 1px solid #E1E8EE;
+    padding: 20px 30px;
+    color: #5E6977;
+    font-size: 2.5vh;
+    font-weight: 400;
+    width: 10%;
+    float: left !important;
+  }
+  .del a { 
+    color: #c0cad4;
+    } 
+  .item {
+    padding: 2vh 3vw;
+    height: 250px;
+    display: flex;
+    vertical-align: middle;
+  }
+   
+  .item:nth-child(3) {
+    border-top:  1px solid #8996a1;
+    border-bottom:  1px solid #8996a1;
+  }
+  .buttons {
+    position: relative;
+    padding-top: 90px;
+    margin-right: 2vw;
+    vertical-align: middle;
+  }
+  .delete-btn,
+  .like-btn {
+    display: inline-block;
+    Cursor: pointer;
+  }
+  .delete-btn {
+    width: 1.5vw;
+    height: 17px;
+    background: url("delete-icn.svg") no-repeat center;
+  }
+   
+
+  .is-active {
+    animation-name: animate;
+    animation-duration: .8s;
+    animation-iteration-count: 1;
+    animation-timing-function: steps(28);
+    animation-fill-mode: forwards;
+  }
+   
+  @keyframes animate {
+    0%   { background-position: left;  }
+    50%  { background-position: right; }
+    100% { background-position: right; }
+  }
+  .image {
+    margin-right: 1vw;
+    width: 200px;
+    height: 200px;
+  }
+
+  .description {
+    padding-top: 6vh;
+    margin-right: 1vw;
+    width: 32vw;
+  }
+   
+  .description span {
+    display: block;
+    font-size: 14px;
+    color: #43484D;
+    font-weight: 400;
+  }
+   
+  .description span:first-child {
+    margin-bottom: 1vh;
+    font-size: 2.2vh;
+    color: #4e614f;
+  }
+  .description span:last-child {
+    font-weight: 300;
+    color: #86939E;
+    font-size: 2vh;
+  }
+  .quantity {
+    padding-top: 8.3vh;
+    margin-right: 1vw;
+    width: 10vw;
+    text-align: center;
+    vertical-align: middle;
+  }
+  .quantity input {
+    -webkit-appearance: none;
+    border: none;
+    text-align: center;
+    width: 2.5vw;
+    font-size: 22px;
+    color: #86939E;
+    font-weight: 300;
+    min-width: 30px;
+  }
+   
+  button[class*=btn] {
+    width: 2.5vw;
+    height: 2.5vw;
+    background-color: #dbdad7;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    min-height: 30px;
+    min-width: 30px;
+  }
+  .minus-btn  {
+    margin-bottom: 1px;
+    margin-top: 1px;
+    vertical-align: middle;
+    font-size: 1.3vw;
+
+  }
+  .plus-btn  {
+    margin-top: 1px;
+    margin-bottom: 1px;
+    vertical-align: middle;
+    font-size: 1.3vw;
+  }
+  .plus-btn a { 
+    color: #6e7573;
+    } 
+  .minus-btn a { 
+      color: #6e7573;
+      } 
+   
+  button:focus,
+  input:focus {
+    outline:0;
+  }
+  .total-price {
+    width: 9vw;
+    padding-top: 10vh;
+    padding-bottom: 5px;
+    text-align: right;
+    font-size: 2vh;
+    color: #4e614f;
+    font-weight: 300;
+    vertical-align: middle;
+    margin-bottom: 5px;
+    margin-left: 1vw;
+    margin-right: 0;
+  }
+  .totaltotal-price {
+    padding-top: 20px;
+    padding-bottom: 5px;
+    font-weight: 300;
+    vertical-align: middle;
+    height: 6vh;
+    width: 100%;
+    text-align: right;
+    padding-right: 30px;
+
+    color: #5E6977;
+    font-size: 2vh;
+    font-weight: 400;
+  }
+  @media (max-width: 1050px) {
+    .shopping-cart {
+      width: 80%;
+      height: auto;
+      overflow: hidden;
+    }
+    .item {
+      height: auto;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .image img {
+      width: 100%;
+    }
+    .image {
+      width: 33%;
+    }
+    .quantity,
+    .description,
+    .total-price {
+      width: 100%;
+      text-align: center;
+      margin: 6px 0 ;
+      padding-left: 65px;
+      padding-top: 4vw;
+    }
+    .buttons {
+      padding-top: 1px;
+      margin-right: 50px;
+    }
+    .title {
+      width: 100%;
+    }
+    .del {
+      width: 100%;
+    }
+  }

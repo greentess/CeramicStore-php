@@ -1,0 +1,165 @@
+<? $start = session_start();
+$log = $_SESSION["log"];
+if (!isset($log)) {
+ include("authorization.phtml");
+} else {
+ $callbacks = $_SESSION["callbacks"];
+ if ($callbacks == 0) { ?>Ошибка! У вас нет доступа к списку звонков.<? } else {
+
+ include("admin_header.phtml");
+ include("connect.phtml");
+ include("admin_cabinet_nav.phtml"); ?>
+<html>
+
+<head>
+ <link href="css/all_callbacks.css" rel="stylesheet">
+ <link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+</head>
+
+<body bgcolor="#d9d9d9" style="font-family:Helvetica">
+
+ <?
+ $mykey = $_POST["mykey"];
+ if ($mykey == 1) {
+ $id_callback = $_POST["id_callback"];
+ $obr = $_POST["obr"];
+ $noobr = $_POST["noobr"];
+ $date_obr = $_POST["date_obr"];
+ $strSQL = "SELECT * FROM callbacks  WHERE id_callback='" . $id_callback . "'";
+ $result = mysqli_query($connection, $strSQL) or die("Не могу выполнить запрос!");
+ if ($noobr == 1) {
+ $strSQL1 = "UPDATE callbacks SET status='Обработан', date_obr=NOW() WHERE id_callback='" . $id_callback . "'";
+ $result1 = mysqli_query($connection, $strSQL1) or die("Не могу выполнить запрос1!");
+ $message = "<div class='mes2'><b>Звонок был обработан!</b> </div>";
+ } else {
+ if ($obr == 1) {
+ $strSQL1 = "UPDATE callbacks SET status='Обрабатывается', date_obr='' WHERE id_callback='" . $id_callback . "'";
+ $result1 = mysqli_query($connection, $strSQL1) or die("Не могу выполнить запрос1!");
+ $message = "<div class='mes'><b>Обработка звонка отменена!</b> </div>";
+ } else
+  $message = "<div class='mes'><b>Что-то пошло не так!</b> </div>";
+   }
+   print $message;
+  }
+  $query1 = mysqli_query($connection, "SELECT * FROM callbacks");
+  $result1 = mysqli_num_rows($query1);
+ ?>
+ <table class="form-table-zakaz">
+  <tr>
+   <td class="subtitle-zakaz">
+    Звонки<br>
+   </td>
+  </tr>
+  <tr>
+   <td class="subtitle-zakaz1">
+    Всего звонков - <? print $result1; ?>
+   </td>
+  </tr>
+  <tr>
+   <td><br><br></td>
+  </tr>
+ </table>
+ <table class="form-table-zakaz1">
+  <tr>
+   <td <table width="100%" align="right">
+    <?
+                                                                     $result = mysqli_query($connection, "SELECT * FROM callbacks ORDER BY status ASC");
+                                                                     while ($row = mysqli_fetch_array($result)) {
+    ?>
+     <form class="my-form" action=change_callbacks.phtml method=post>
+      <input type=hidden value=1 name=mykey>
+      <?
+                                                                      if ($row["status"] == "Обрабатывается") {
+      ?>
+       <input type=hidden value=1 name=noobr>
+       <input type=hidden value=<? print $row["id_callback"]; ?> name=id_callback>
+
+       <table class="table-zakaz1">
+        <tr>
+         <td class="input-line1">
+          звонок № <? print $row["id_callback"] ?><br> от <? print $row["date"] ?>
+         </td>
+         <td class="input-line1">
+
+         </td>
+         <td class="input-line1">
+          <font style="color:#761d1d;">Статус:<br> <? print $row["status"] ?></font>
+          <!-- <input type=hidden value="Обработан" name=status> -->
+         </td>
+         <td></td>
+        </tr>
+       </table>
+       <table class="table-zakaz1">
+        <tr>
+         <td class="input-line2">
+          <?= $row["name"] ?>
+         </td>
+         <td class="input-line222">
+          <a href="tel:<?= $row["phone"] ?>"><?= $row["phone"] ?></a>
+         </td>
+         <? if ($callbacks == 2) { ?>
+          <td class="input-line2">
+           <div class="d-polosa"> <a href="#"><button class="but_yes"><a style="font-size: 25px;"><i class="fa fa-thumbs-up"></i></a><br></button></a></div>
+          </td>
+         <? } ?>
+        </tr>
+       </table>
+      <? } ?>
+      <?
+                                                                      if ($row["status"] == "Обработан") {
+      ?>
+       <input type=hidden value=1 name=obr>
+       <input type=hidden value=<? print $row["id_callback"]; ?> name=id_callback>
+
+       <table class="table-zakaz1">
+        <tr>
+         <td class="input-line1">
+          звонок № <? print $row["id_callback"] ?><br> от <? print $row["date"] ?>
+         </td>
+         <td class="input-line1">
+
+         </td>
+         <td class="input-line1">
+          <font style="color:rgb(83, 90, 70);">Статус:<br> <? print $row["status"] ?><br>
+
+           Дата обработки:<? print $row["date_obr"] ?></font>
+          <!-- <input type=hidden value="Обрабатывается" name=status> -->
+          <input type=hidden value="" name=date_obr>
+         </td>
+         <td></td>
+        </tr>
+       </table>
+       <table class="table-zakaz1">
+        <tr>
+         <td class="input-line2">
+          <?= $row["name"] ?>
+         </td>
+         <td class="input-line222">
+          <a href="tel:<?= $row["phone"] ?>"><?= $row["phone"] ?></a>
+         </td>
+         <? if ($callbacks == 2) { ?>
+          <td class="input-line2">
+           <div class="d-polosa"> <a href="#"><button class="but_no"><a style="font-size: 25px;"><i class="fa fa-thumbs-down"></i></a><br></button></a></div>
+          </td>
+         <? } ?>
+        </tr>
+       </table>
+      <? } ?>
+     </form>
+
+    <? } ?>
+ </table>
+
+
+ </td>
+ </tr>
+
+ </table>
+</body>
+
+</html>
+<?
+  include("admin_footer.phtml");
+?>
+<? }
+} ?>

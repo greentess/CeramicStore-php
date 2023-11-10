@@ -1,0 +1,64 @@
+<?$start=session_start();
+$log=$_SESSION["log"];
+if(!isset($log)){include("authorization.phtml");} else{
+    $items_cats_themes=$_SESSION["items_cats_themes"];
+    if($items_cats_themes==0){?>Ошибка! У вас нет доступа к карточкам товаров.<?} else{
+include("admin_header.phtml");
+?>
+<?include("connect.phtml");?>
+
+<html>
+    <head>
+        <link href="css/edit_item.css" rel="stylesheet">
+        <link href="css/full_card.css" rel="stylesheet">
+    </head>
+
+    <?
+
+        $id_item=$_GET["id_item"];
+
+
+            $strSQL="SELECT * FROM items, categories, themes  WHERE items.id_theme=themes.id_theme AND items.id_cat= categories.id_cat AND id_item='".$id_item."'";
+            $result=mysqli_query($connection, $strSQL)or die("Не могу выполнить запрос!"); 
+                
+            if($row=mysqli_fetch_array($result))
+            {
+
+        ?>
+
+  <body> 
+                <div class="card">
+            <nav>
+                <svg class="arrow" version="1.1" viewBox="0 0 512 512" width="512px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><polygon points="352,115.4 331.3,96 160,256 331.3,416 352,396.7 201.5,256 " stroke="#727272"/></svg>
+                    <a href="admin_index.phtml?type=3">Вернуться к списку товаров</a>                  
+            </nav>
+            <div class="photo">
+                <img src="<?print $row["image"];  ?>">
+                <br><br>
+            </div>
+            <div class="description">
+                <h2> <?print $row["name_item"];?></h2>
+                <br>
+                <h4>Категория: <?print $row["name_cat"];?></h4>
+                <h4>Тема: <?print $row["name_theme"];?></h4>
+                <h1><?print $row["price"];?> руб</h1>
+                <br>
+                <p><?print $row["description"];?> </p>
+                
+                <p>Размер: <?print $row["size"];?> </p>
+                <p>Вес: <?print $row["weight"];?>  </p>
+            </div>
+        </div>
+
+
+        </body>
+        <?
+	
+}
+?>       
+</html>
+<?
+include("admin_footer.phtml");
+?>
+<?}?>
+<?}?>

@@ -1,0 +1,22 @@
+<?include("shapka.phtml"); ?>
+<head>
+    <link href="css/callback.css" rel="stylesheet">
+    </head> 
+<?
+	$title="Заявки";
+	$phone=$_POST["phone"];
+	$name=$_POST["name"];
+	$status="На рассмотрении";	
+	include("connect.phtml");
+		if ($phone !="")
+		{
+			$strSQL1="INSERT INTO callbacks(phone,name,status,date) VALUES('".$phone."','".$name."','".$status."',NOW())";
+			
+			$result1=mysqli_query($connection, $strSQL1) or die("Упс!");
+		}
+		
+		$message="<div class='subtitlediv'><div class='subdiv'><div class='subtitle'><b>Спасибо, вскоре мы ответим на все интересующие вас вопросы!!<br></b></div></div></div>";              
+		print $message;
+		include("footer.phtml");
+?>
+	

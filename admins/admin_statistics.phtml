@@ -1,0 +1,107 @@
+<? include("connect.phtml"); ?>
+<html>
+
+<head>
+ <link href="css/admin_statistics.css" rel="stylesheet">
+</head>
+
+<body bgcolor="#92978c" style="font-family:Helvetica">
+
+ <?
+ $query1 = mysqli_query($connection, "SELECT * FROM orders");
+ $result1 = mysqli_num_rows($query1);
+
+ $query2 = mysqli_query($connection, "SELECT * FROM items");
+ $result2 = mysqli_num_rows($query2);
+
+ $query3 = mysqli_query($connection, "SELECT * FROM callbacks");
+ $result3 = mysqli_num_rows($query3);
+
+ $query4 = mysqli_query($connection, "SELECT * FROM customers");
+ $result4 = mysqli_num_rows($query4);
+
+ $query5 = mysqli_query($connection, "SELECT * FROM themes");
+ $result5 = mysqli_num_rows($query5);
+
+ $query6 = mysqli_query($connection, "SELECT * FROM categories");
+ $result6 = mysqli_num_rows($query6);
+
+ $query7 = mysqli_query($connection, "SELECT * FROM admins");
+ $result7 = mysqli_num_rows($query7);
+ ?>
+
+
+ <table class="form-table-zakaz">
+  <tr>
+   <td class="subtitle-zakaz">
+    Общая статистика<br>
+   </td>
+  </tr>
+  <tr>
+   <td><br><br></td>
+  </tr>
+  <tr>
+   <td>
+    <table class="table-zakaz">
+     <tr>
+      <td class="input-line2">
+       Заказов в базе
+      </td>
+      <td class="input-line3">
+       <? print $result1 ?> шт
+      </td>
+     </tr>
+     <tr>
+      <td class="input-line2">
+       Товаров в базе
+      </td>
+      <td class="input-line3">
+       <? print $result2 ?> шт
+      </td>
+     </tr>
+     <tr>
+     <tr>
+      <td class="input-line2">
+       Тематик товаров в базе
+      </td>
+      <td class="input-line3">
+       <? print $result5 ?> шт
+      </td>
+     </tr>
+     <tr>
+      <td class="input-line2">
+       Категории товаров в базе
+      </td>
+      <td class="input-line3">
+       <? print $result6 ?> шт
+      </td>
+     </tr>
+     <td class="input-line2">
+      Звонков в базе
+     </td>
+     <td class="input-line3">
+      <? print $result3 ?> шт
+     </td>
+  </tr>
+  <tr>
+   <td class="input-line2">
+    Покупателей в базе
+   </td>
+   <td class="input-line3">
+    <? print $result4 ?> чел
+   </td>
+  </tr>
+  <tr>
+   <td class="input-line2">
+    Сотрудников в базе
+   </td>
+   <td class="input-line3">
+    <? print $result7 ?> чел
+   </td>
+  </tr>
+ </table>
+ </table>
+
+</body>
+
+</html>

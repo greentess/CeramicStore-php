@@ -1,0 +1,44 @@
+<?$start=session_start();
+include("shapka.phtml");?>
+<head>
+      <meta http-equiv="Content-Type" content="text/html; charset=cp1251" />
+</head>
+<?
+    $fam=$_POST["fam"];
+	$im=$_POST["im"];
+	$addr=$_POST["addr"];
+	$mail=$_POST["mail"];
+	$phone=$_POST["phone"];
+	$subscribe=$_POST["subscribe"];
+	$id=$_SESSION["id"];
+
+	include("connect.phtml");
+?>
+<?		
+    if($fam!="" && $im!="" && $addr!="" && $mail!=""&& $phone != "")
+			{
+				$strSQL1="UPDATE customers SET fam='".$fam."', im='".$im."',addr='".$addr."', mail='".$mail."',  phone='".$phone."' WHERE id_customer=".$id;
+				
+				$result1=mysqli_query($connection, $strSQL1) or die("Не могу выполнить запрос!");
+	
+                $_SESSION["log"]=$fam." ".$im;// обновили значение сеансовой переменной
+?>
+                <br></br>
+                <br></br>
+
+<?
+                $message="<div class='subtitle2'<b>Изменения данных выполнены успешно!</b> </div>";                 
+
+			}
+	else
+    $message="<div class='subtitle'<b>Заполните все пустые поля!</b> </div>";                 
+
+	
+?>
+	<br></br>
+	<br></br>
+	<br></br>
+	<br></br>
+<?
+include("footer.phtml");
+?>

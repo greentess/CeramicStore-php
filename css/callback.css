@@ -1,0 +1,26 @@
+.subtitlediv {
+    width: 100%;
+    height: 64.5%;
+    background-image: url("../картинки/фончик.jpg") ;
+    
+    background-size:cover;
+    z-index: -10;
+  
+  }
+  .myfooter{
+
+    background-color: rgb(116,120,111);
+    height: 19%;
+    border-top: 1px solid #45554c;
+  }
+
+  .subtitle {
+    text-align: center;
+    line-height: 1em;
+    font-weight: 100;
+    letter-spacing: 0px;
+    letter-spacing: 0.02rem;
+    padding-top: 280px;
+    color: rgb(45, 90, 58);
+    font-size: 2vw;
+  } 

@@ -1,0 +1,76 @@
+<?php 
+header("Cache-control:no-cache");
+$id_basket=$_COOKIE['id_basket']; 
+if (!isset($id_basket))
+	{
+		$uniq_ID=uniqid('ID');
+		setcookie('id_basket', $uniq_ID, time()+ 60*60*24*14);
+		//  cookie
+	}
+else
+	{
+		setcookie('id_basket', $id_basket, time()+ 60*60*24*14);
+	}
+	session_start();
+?>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=cp1251" />
+		<link href="css/shapka.css" rel="stylesheet">
+		<link href="css/basket.css" rel="stylesheet">
+		<title>CERAMIC vibes</title>
+		<link rel="shortcut icon" href="картинки/favicon.ico" type="image/x-icon"> 
+	</head>
+
+	<body  bgcolor="#eceae6" style="font-family:Helvetica, sans-serif;"> 
+	<div class="table2">
+		<table > 
+			<tr> 
+				<td class="polosasverhu"> 
+				</td>     
+			</tr>
+		</table>
+	</div>
+	<div class="table1">
+		<table>
+			<tr > 
+				<td style="font-size:0.8vw; " align="left"> 
+					<img src="картинки/рисунок1.png"  width="1%" style="padding-left: 3%; padding-top: 0.5%;"> 
+					<font face="Helvetica" color=#000000  >+7(987)416-23-30 &nbsp; &nbsp; &nbsp; &nbsp;|</font> 
+					<img src="картинки/рисунок2.png" width="1.45%" style="padding-left: 1.5%;padding-top: 0.5%;"> 
+					<font face="Helvetica" color=#000000 >ceramic_vibes@gmail.com</font> 
+				</td>   
+			</tr> 
+		</table> 
+	
+		<table >  
+			<tr class="granica"> 
+				<td align="right" class="menu"  style=" width:10%; font-size: 0.8vw;" > 
+					<p class="menu-links"><a href="glavnaya.phtml">ГЛАВНАЯ</a></p> 
+				</td> 
+				<td align="right" class="menu"  style="width:7%; font-size: 0.8vw;" > 
+					<p class="menu-links"> <a href="catalog.phtml?type=3">КАТАЛОГ</a></p> 
+				</td> 
+				<td align="right" class="menu"  style="width:10%; font-size: 0.8vw;" > 
+					<p class="menu-links"><a href="#">КОНТАКТЫ</a></p> 
+				</td> 
+
+				<td   style="width:38%; font-size: 0.8vw; padding-left: 15.5vw;" > 
+					<p class="text" align="center">  CERAMIC <br>  &nbsp;&nbsp;&nbsp;vibes </p> 
+				</td> 
+				<td align="left" class="menu"  style="width:10%; font-size: 0.8vw;" > 
+					<p class="menu-links"><a href="cabinet.phtml?type=1"> ЛИЧНЫЙ КАБИНЕТ </a></p> 
+				</td> 
+    <td align="left" class="menu"  style="width:6%; font-size: 0.8vw;" > 
+					<p class="menu-links"><a href="basket.phtml">КОРЗИНА</a></p> 
+				</td> 
+				<td id="block" align="left" class="menu"  style="width:5%; font-size: 0.8vw;" > 
+					<p class="menu-links"><a href="authorization.phtml"> ВХОД </a></p> 
+				</td> 
+
+			</tr> 
+		</table> 
+	</div>
+	</body>
+</html>
+

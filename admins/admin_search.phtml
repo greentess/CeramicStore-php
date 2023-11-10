@@ -1,0 +1,39 @@
+<html>
+
+<head>
+ <link href="css/admin_search.css" rel="stylesheet">
+</head>
+
+<?php
+include "connect.phtml";
+$output = '';
+if (isset($_POST['search'])) {
+ $search = $_POST['search'];
+ $search = preg_replace("#[a-zа-я0-9_]i#", "", $search);
+ $query = mysqli_query($connection, "SELECT * FROM items WHERE name_item LIKE '%$search%'") or die("Could not search");
+ $count = mysqli_num_rows($query);
+ if ($count == 0) {
+  $output = "Товары не были найдены!";
+  print $output;
+ } else { ?>
+  <div class="cat">
+   <?
+   while ($row = mysqli_fetch_array($query)) { ?>
+    <div class="product-item">
+     <img src="<? print $row["image"]; ?> ">
+     <div class="product-list">
+      <h3><? print $row["name_item"]; ?></h3>
+      <span class="price"><? print $row["price"]; ?> руб</span>
+      <? if ($items_cats_themes == 2) { ?>
+       <a href="edit_item.phtml?id_item=<? print $row["id_item"]; ?>" class="button">Редактировать</a>
+       <br>
+       <a href="del_item.phtmlid_item=<? print $row["id_item"]; ?>" class="button1">Удалить</a>
+      <? } ?>
+     </div>
+    </div>
+   <? } ?>
+  </div>
+<? }
+}
+?>
+

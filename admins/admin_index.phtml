@@ -1,0 +1,192 @@
+<? $start = session_start();
+$type = $_GET["type"];
+$mykey = $_POST["mykey"];
+$log = $_SESSION["log"];
+
+if (!isset($log)) {
+ include("authorization.phtml");
+} else { ?>
+ <? include("admin_header.phtml"); ?>
+
+ <head>
+  <link href="css/admin_cabinet.css" rel="stylesheet">
+  </head>
+
+ <body>
+  <? //меню слева
+  include("admin_cabinet_nav.phtml");
+  ?>
+  <? //главная, статистика(начальная страничка при переходе в главную из шапки и футера)
+  if ($type == 0) {
+   if (!isset($log)) {
+    $message = "<div class='subtitlediv'><div class='subdiv'><div class='subtitle2'><b>Вы не авторизованы.</b></div></div></div>";
+    print $message;
+   } else include("admin_statistics.phtml");
+  }
+  ?>
+  <? //данные конкретного сотрудника
+  if ($type == 1) {
+   include("admin_cabinet (2).phtml");
+  }
+  ?>
+  <? //все заказы и детальный просмотр каждого заказа оттуда
+  if ($type == 2) {
+   include("all_orders.phtml");
+  }
+  ?>
+  <? //все товары 
+  if ($type == 3) {
+   include("all_items.phtml");
+  }
+  ?>
+  <? //редактирование выбранного товара
+  if ($type == 4) {
+   include("edit_item.phtml");
+  }
+  ?>
+  <?
+  if ($type == 5) { //поиск товаров и отсюда можно вернуться ко всем товарам или еще раз поиск совершить
+  ?>
+   <table class="form-table-zakaz">
+    <tr>
+     <td class="subtitle-zakaz">
+      Найденные товары<br>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <table class="form-table-zakaz1">
+       <tr>
+        <td class="subtitle-zakaz11">
+         <a href="admin_index.phtml?type=3"><button class="but">Показать все</button></a>
+        </td>
+       </tr>
+       <tr>
+        <td class="subtitle-zakaz1">
+         <div class="d1">
+          <form method="post" action="admin_index.phtml?type=5">
+           <input id="search" name="search" type="text" placeholder="Искать здесь...">
+           <button type="submit"></button>
+          </form>
+         </div>
+        </td>
+       </tr>
+      </table>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <br><br>
+     </td>
+    </tr>
+   </table>
+  <? include("admin_search.phtml");
+  }
+  ?>
+  <? //список категорий и тем, оттуда добавление, редактирвоание, удаление
+  if ($type == 6) {
+   include("all_cat_themes.phtml");
+  }
+  ?>
+  <? //список покупателей
+  if ($type == 7) {
+   include("all_customers.phtml");
+  }
+  ?>
+  <?
+  if ($type == 9) { //поиск покупателей
+  ?>
+   <table class="form-table-zakaz">
+    <tr>
+     <td class="subtitle-zakaz">
+      Найденные покупатели<br>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <table class="form-table-zakaz1">
+       <tr>
+        <td class="subtitle-zakaz11">
+         <a href="admin_index.phtml?type=7"><button class="but">Показать всех</button></a>
+        </td>
+       </tr>
+       <tr>
+        <td class="subtitle-zakaz1">
+         <div class="d1">
+          <form method="post" action="admin_index.phtml?type=9">
+           <input id="search" name="search" type="text" placeholder="Искать здесь...">
+           <button type="submit"></button>
+          </form>
+         </div>
+        </td>
+       </tr>
+      </table>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <br><br>
+     </td>
+    </tr>
+   </table>
+  <? include("admin_search_customers.phtml");
+  }
+  ?>
+
+  <?
+  if ($type == 10) { //поиск сотрудников
+  ?>
+   <table class="form-table-zakaz">
+    <tr>
+     <td class="subtitle-zakaz">
+      Найденные сотрудники<br>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <table class="form-table-zakaz1">
+       <? $admins = $_SESSION["admins"];
+       if ($admins == 2) { ?>
+        <tr>
+         <td class="subtitle-zakaz11">
+          <a href="new_admin.phtml"><button class="but">Добавить</button></a>
+         </td>
+        </tr>
+       <? } ?>
+       <tr>
+        <td class="subtitle-zakaz11">
+         <a href="admin_index.phtml?type=8"><button class="but">Показать всех</button></a>
+        </td>
+       </tr>
+       <tr>
+        <td class="subtitle-zakaz1">
+         <div class="d1">
+          <form method="post" action="admin_index.phtml?type=10">
+           <input id="search" name="search" type="text" placeholder="Искать здесь...">
+           <button type="submit"></button>
+          </form>
+         </div>
+        </td>
+       </tr>
+      </table>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <br><br>
+     </td>
+    </tr>
+   </table>
+  <? include("admin_search_admins.phtml");
+  }
+  ?>
+  <? //список сотрудников
+  if ($type == 8) {
+   include("all_admins.phtml");
+  }
+  ?>
+ </body>
+ <?
+ include("admin_footer.phtml");
+ ?>
+<? } ?>

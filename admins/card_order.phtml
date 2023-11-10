@@ -1,0 +1,78 @@
+<?$start=session_start();
+$log=$_SESSION["log"];
+if(!isset($log)){include("authorization.phtml");} else{
+    $orders=$_SESSION["orders"];
+    if($orders==0){?>Ошибка! У вас нет доступа к просмотру деталей заказа.<?} else{
+
+include("admin_header.phtml");
+include("connect.phtml");?>
+<html>
+<head>
+<link href="css/card_order.css" rel="stylesheet">
+</head>
+
+
+<?
+$id_order = $_GET["id_order"];
+$title="Заказ";
+    include("admin_cabinet_nav.phtml");
+    
+?>
+
+<?
+            $strSQL1="SELECT * FROM items, order_items WHERE items.id_item=order_items.id_item AND id_order='".$id_order."'";			
+            $result1=mysqli_query($connection, $strSQL1) or die("Не могу выполнить запрос2!");
+            $allkolvo=0; 
+            while($row=mysqli_fetch_array($result1))
+            {
+                $allkolvo=$allkolvo+$row["kolvo"];
+            }
+            $strSQL1="SELECT * FROM items, order_items WHERE items.id_item=order_items.id_item AND id_order='".$id_order."'";			
+            $result1=mysqli_query($connection, $strSQL1) or die("Не могу выполнить запрос2!");
+            ?>
+            <div class="shopping-cart">
+            <div>
+                    <div class="title1">
+                    <a href="admin_index.phtml?type=2">Вернуться к заказам</a>
+                    </div>
+                </div>
+                <div>
+                    <div class="title">
+                    <?print $title;?>&nbsp;&nbsp;/&nbsp;&nbsp;<?print $allkolvo;?>&nbsp; тов
+                    </div>
+                </div>
+                <? 
+                $sum=0;  
+                $totalsum=0;
+                while($row=mysqli_fetch_array($result1))
+                {
+                    ?>
+                    <div class="item">
+                        <div class="image">
+                            <img width="100%" src="<?print $row["image"];?>" alt="" />
+                        </div>
+                        <div class="description">
+                            <span><?print $row["name_item"];?></span>
+                            <br>
+                            <span><?print $row["price"];?> руб</span>
+                            <br>
+                            <span><?print $row["kolvo"];?> тов</span>
+                        </div>
+                        <?
+                        $sum=$row["price"]*$row["kolvo"];
+                        $totalsum=$totalsum+$sum;
+                        ?>
+                        <div class="total-price"><?print $sum?> руб</div>
+                    </div>
+                    <?
+                }
+                ?> 
+                <div class="totaltotal-price">Сумма заказа: <?print $totalsum?> руб</div>
+            </div>
+
+</html>	
+<?
+include("admin_footer.phtml");
+?>
+<?}}?>
+

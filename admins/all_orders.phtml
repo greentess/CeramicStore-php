@@ -1,0 +1,69 @@
+<? $start = session_start();
+$log = $_SESSION["log"];
+if (!isset($log)) {
+ include("authorization.phtml");
+} else {
+ $orders = $_SESSION["orders"];
+ if ($orders == 0) { ?>Ошибка! У вас нет доступа к списку заказов.<? } else {
+include("connect.phtml"); ?>
+<html>
+<head>
+ <link href="css/all_orders.css" rel="stylesheet">
+</head>
+<body bgcolor="#d9d9d9" style="font-family:Helvetica">
+ <?
+$query1 = mysqli_query($connection, "SELECT * FROM orders");
+$result1 = mysqli_num_rows($query1);
+ ?>
+ <table class="form-table-zakaz">
+  <tr>
+   <td class="subtitle-zakaz">
+    Заказы<br>
+   </td>
+  </tr>
+  <tr>
+   <td class="subtitle-zakaz1">
+    Всего заказов - <? print $result1; ?>
+   </td>
+  </tr>
+  <tr>
+   <td><br><br></td>
+  </tr>
+ </table>
+ <table class="form-table-zakaz1">
+  <tr>
+   <td <table width="100%" align="right">
+    <?
+ $result = mysqli_query($connection, "SELECT * FROM orders");
+ while ($row = mysqli_fetch_array($result)) {
+    ?>
+     <table class="table-zakaz1">
+      <tr>
+       <td class="input-line1">
+        от <?= $row["date_order"] ?>
+       </td>
+       <td></td>
+      </tr>
+     </table>
+     <table class="table-zakaz1">
+      <tr>
+       <td class="input-line2">
+        Заказ № <?= $row["id_order"] ?>
+
+       </td>
+       <td class="input-line2">
+        <div class="d-polosa"> <a href="card_order.phtml?id_order=<? print $row["id_order"]; ?>"><button class="but">Детали</button></a></div>
+
+       </td>
+      </tr>
+     </table>
+    <? } ?>
+
+ </table>
+ </td>
+ </tr>
+ </table>
+</body>
+</html>
+<? }
+} ?>

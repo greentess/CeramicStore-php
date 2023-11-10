@@ -1,0 +1,43 @@
+<?include("shapka.phtml");?>
+<?include("connect.phtml");?>
+
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=cp1251" />
+        <link href="css/full_card.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <?
+            $title="�������";
+            $id_item=$_GET["id_item"];
+            $result = mysqli_query($connection,"SELECT * from items,categories,themes WHERE items.id_cat=categories.id_cat and themes.id_theme=items.id_theme and items.id_item=".$id_item) or die("�� ���� ��������� ������ 1!");
+        ?>
+
+        <?
+        while ($result2 = mysqli_fetch_array($result))
+        {?>
+        <div class="card">
+            <nav href="catalog.phtml?type=3">
+                <svg href="catalog.phtml?type=3" class="arrow" version="1.1" viewBox="0 0 512 512" width="512px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><polygon points="352,115.4 331.3,96 160,256 331.3,416 352,396.7 201.5,256 " stroke="#727272"/></svg>
+                <a style="color:black;text-decoration: none;" href="catalog.phtml?type=3">КАТАЛОГ</a></p> 
+            </nav>
+            <div class="photo">
+                <img src="<?print $result2["image"];?>">
+            </div>
+            <div class="description">
+                <h2> <?print $result2["name_item"];?></h2>
+                <br>
+                <h4>Категория: <?print $result2["name_cat"];?></h4>
+                <h4>Тема: <?print $result2["name_theme"];?></h4>
+                <h1><?print $result2["price"];?> руб.</h1>
+                <br>
+                <p><?print $result2["description"];?> </p>
+                
+                <p>Размер: <?print $result2["size"];?> </p>
+                <p>Вес: <?print $result2["weight"];?>  </p>
+                            </div>
+        </div>
+        <?}?>
+    </body>
+</html>

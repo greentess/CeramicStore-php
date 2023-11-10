@@ -1,0 +1,175 @@
+<?$start=session_start();
+$log=$_SESSION["log"];
+if(!isset($log)){include("authorization.phtml");} else{
+    $items_cats_themes=$_SESSION["items_cats_themes"];
+    if($items_cats_themes!=2){?>Ошибка! У вас нет доступа к добавлению товаров.<?} else{
+
+include("admin_header.phtml");
+?>
+<?include("connect.phtml");?>
+
+    <head>
+        <link href="css/new_item.css" rel="stylesheet">
+    </head>
+
+    <?
+        $name_item=$_POST["name_item"];
+        $id_theme=$_POST["id_theme"];
+        $id_cat=$_POST["id_cat"];
+        $price=$_POST["price"];
+        $description=$_POST["description"];
+        $weight=$_POST["weight"];
+        $size=$_POST["size"];
+        $image=$_POST["image"];
+        
+
+        $name_cat=$_POST["name_cat"];
+        $name_theme=$_POST["name_theme"];
+
+        $key=$_POST["key"];  
+
+            if ($key==1)    {
+                    if ($image=="")
+                        $image="картинки/Нетфото.png";
+                    else
+                        $image = "картинки/".$image;
+
+                    if($name_item!="" and $price!=""and $id_theme!="" and $id_cat!=""and $description!="" and $weight!="" and $size!="")
+                    {   
+                        // print $name_item;print '  ';
+                        // print $image;print '  ';
+                        // print $id_cat;print '  ';
+                        // print $id_theme;print '  ';
+                        // print $description;print '  ';
+                        // print $weight;print '  ';
+                        // print $price;print '  ';
+                        // print $size;print '  ';
+                        $strSQL1="INSERT INTO items(name_item,price, id_cat, id_theme,description,weight,size,image) VALUES ('".$name_item."','".$price."','".$id_cat."','".$id_theme."','".$description."','".$weight."','".$size."','".$image."')";			
+                        $result1=mysqli_query($connection, $strSQL1) or die("Не могу выполнить запрос!");	               
+                        ?>
+                        <link href="css/new_item1.css" rel="stylesheet">
+                        <?
+
+                        $message="<div style='width:100%;height:75%; background-color:white;'><div class='subdiv'><div class='subtitle2'><b>Товар был успешно добавлен.</b></div><br> <div class='aftermes'><a href='admin_index.phtml?type=3'>Вернуться к списку товаров</a> </div></div></div>";
+                        $success=true;
+                    }
+                    else
+                        $message="<div class='mes'><b>Заполните все пустые поля!</b> </div>"; 
+                    print $message;
+                }      
+        	
+
+
+            // $result = mysqli_query($connection,"SELECT * from items,categories,themes WHERE items.id_cat=categories.id_cat and themes.id_theme=items.id_theme and items.id_item=".$id_item) or die("Не могу выполнить запрос 1!");
+            //  $result = mysqli_query($connection,"SELECT * from items WHERE id_item=".$id_item) or die("Не могу выполнить запрос 1!");
+
+    if(!$success)
+    {
+    ?>
+
+        <body> 
+            <form class="my-form" action=new_item.phtml method=post>
+                <div class="card">
+                    <nav>
+                        <svg class="arrow" version="1.1" viewBox="0 0 512 512" width="512px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><polygon points="352,115.4 331.3,96 160,256 331.3,416 352,396.7 201.5,256 " stroke="#727272"/></svg>
+                            <a href="admin_index.phtml?type=3">Вернуться к списку товаров</a>                  
+                    </nav>
+                    <div class="photo">
+                        <img src="картинки/Нетфото.png">
+                        <br><br>
+                        
+                        <h1>Загрузите изображение:</h1>
+                        <!-- <input type='file' name=image value="<?//print $image;?>" placeholder='Путь к изображению' class='input-line-h4-1'></input>
+                        <?//$image = fopen($_FILES["$image"]["tmp_name"], 'r');?> 
+                        <?//$newimage='картинки/'.$row["image"];print $newimage;?>  -->
+                        <div class="upload-file__wrapper">
+                            <input
+                                type="file"
+                                name="image"
+                                id="upload-file__input_1"
+                                class="upload-file__input"
+                                accept=".jpg, .jpeg, .png, .gif"  
+                                value="<?print $image?>"                  
+                            >
+                            <label class="upload-file__label" for="upload-file__input_1">
+                                <div class="upload-file__icon"><a><i class="fas fa-file-image"></i></a></div>
+                                <span class="upload-file__text">Прикрепить файл</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="description">
+                        <h1>Название:</h1>
+                        <input type='text' name=name_item value="<?print $name_item?>" placeholder='Название товара' class='input-line-h4'></input>
+
+                
+                        <!-- <h1>Категория:</h1>
+                        <input type='text' name=name_cat value="<?//print $row["name_cat"];  ?>" placeholder='Название категории' class='input-line-h4'></input> -->
+                        <h1>Категория:</h1>
+                        <select name=id_cat class='input-line-h4' value="<?print $id_cat?>">
+                        <?               
+                        $category = mysqli_query($connection,"SELECT * FROM categories");
+
+                        If (mysqli_num_rows($category) > 0)
+                        {
+                            echo '<option disabled selected>Выберите категорию</option>';
+                        $result_category = mysqli_fetch_array($category);
+                        do
+                        {
+                                echo '<option  value="'.$result_category["id_cat"].'" >'.$result_category["name_cat"].'</option>';
+                        }
+                        while ($result_category = mysqli_fetch_array($category));
+                        }
+                        ?>
+                        </select>               
+                        <!-- <h1>Тема:</h1>
+                        <input type='ch' name=name_theme value="<?//print $row["id_theme"];  ?>" placeholder='Название темы' class='input-line-h4'></input> -->
+                        <h1>Тема:</h1>
+                        <select name=id_theme class='input-line-h4' value="<?print $id_theme?>">
+                        <?               
+                        $theme = mysqli_query($connection,"SELECT * FROM themes");
+
+                        If (mysqli_num_rows($theme) > 0)
+                        {
+                            
+                            echo '<option disabled selected>Выберите тему</option>';
+                        $result_theme = mysqli_fetch_array($theme);
+                        do
+                        {
+                                echo '<option  value="'.$result_theme["id_theme"].'" >'.$result_theme["name_theme"].'</option>';
+                        }
+                        while ($result_theme = mysqli_fetch_array($theme));
+                        }
+                        ?>
+                        </select>  
+                    
+                        <h1>Цена (руб):</h1>
+                        <input type='number' name=price value="<?print $price?>" placeholder='Цена' class='input-line-h4'></input> 
+                        
+                        <input class="button" type="submit" value="Добавить">
+                    </div>
+                    <div class="description2">
+
+                        <h1>Описание:</h1>
+                        <textarea name=description placeholder='Описание' class='input-line-p'><?print $description?></textarea> 
+
+                        <h1>Размер:</h1>
+                        <input type='text' name=size value="<?print $size?>" placeholder='Размер' class='input-line-h4'></input> 
+                        
+                        <h1>Вес:</h1>
+                        <input type='text' name=weight value="<?print $weight?>" placeholder='Вес' class='input-line-h4'></input> 
+
+                        
+                        
+                    
+                    </div>
+                    <input type=hidden  name=key value=1>
+                </div>
+            </form>
+        </body>
+    <?
+    }
+    ?>  
+<?
+include("admin_footer.phtml");
+?>
+<?}?><?}?>

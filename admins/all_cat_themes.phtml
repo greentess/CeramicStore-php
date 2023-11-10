@@ -1,0 +1,170 @@
+<? $start = session_start();
+include("connect.phtml");
+$log = $_SESSION["log"];
+if (!isset($log)) {
+ include("authorization.phtml");
+} else {
+ $items_cats_themes = $_SESSION["items_cats_themes"];
+ if ($items_cats_themes == 0) { ?>Ошибка! У вас нет доступа к списку категорий и тем.<? } else {
+?>
+<html>
+
+<head>
+ <link href="css/all_cat_themes.css" rel="stylesheet">
+</head>
+
+<body bgcolor="#d9d9d9" style="font-family:Helvetica">
+
+ <?
+        $query1 = mysqli_query($connection, "SELECT * FROM categories");
+        $result1 = mysqli_num_rows($query1);
+        $query2 = mysqli_query($connection, "SELECT * FROM themes");
+        $result2 = mysqli_num_rows($query2);
+ ?>
+
+ <div class="mydiv">
+  <table class="form-table-zakaz">
+   <tr>
+    <td class="subtitle-zakaz">
+     Категории<br>
+    </td>
+   </tr>
+   <tr>
+    <td class="subtitle-zakaz1">
+     Всего категорий - <? print $result1; ?>
+    </td>
+   </tr>
+   <? if ($items_cats_themes == 2) { ?>
+    <tr>
+     <td class="input-line2">
+      <div class="d-polosa"> <a href='new_cat_theme.phtml?cat=1'><button class="but2">Добавить</button></a></div>
+     </td>
+    </tr>
+   <? } ?>
+   <tr>
+    <td><br><br></td>
+   </tr>
+  </table>
+  <table class="form-table-zakaz1">
+   <tr>
+    <td <table width="100%" align="right">
+     <?
+
+        $res1 = mysqli_query($connection, "SELECT * FROM categories");
+        while ($row1 = mysqli_fetch_array($res1)) {
+     ?>
+      <table class="table-zakaz1">
+       <tr>
+        <td class="input-line1">
+         № <?= $row1["id_cat"] ?>
+        </td>
+        <td></td>
+       </tr>
+      </table>
+      <table class="table-zakaz1">
+       <tr>
+        <td class="input-line2">
+         <?= $row1["name_cat"] ?>
+
+
+        </td>
+
+        <td class="input-line3">
+         <div class="d-polosa"><button class="buti"><a href="info_cat_theme.phtml?cat=1&id_cat=<? print $row1["id_cat"]; ?>"><i class="fas fa-info"></i></a></button></div>
+        </td>
+        <? if ($items_cats_themes == 2) { ?>
+         <td class="input-line2">
+          <div class="d-polosa"> <a href="edit_cat_theme.phtml?cat=1&id_cat=<? print $row1["id_cat"]; ?>"><button class="but">Изменить</button></a></div>
+         </td>
+         <td class="input-line2">
+          <div class="d-polosa1"> <a href="del_cat_theme.phtml?cat=1&id_cat=<? print $row1["id_cat"]; ?>"><button class="but1">Удалить</button></a></div>
+         </td>
+        <? } ?>
+       </tr>
+      </table>
+     <? } ?>
+
+  </table>
+
+  </td>
+  </tr>
+
+  </table>
+
+  <table class="form-table-zakaz">
+   <tr>
+    <td class="subtitle-zakaz" style="text-align: right;">
+     Темы<br>
+    </td>
+   </tr>
+   <tr>
+    <td class="subtitle-zakaz1" style="text-align: right;">
+     Всего тем - <? print $result2; ?>
+    </td>
+   </tr>
+   <? if ($items_cats_themes == 2) { ?>
+    <tr>
+     <td class="input-line2" style="text-align: right;">
+      <div class="d-polosa"> <a href="new_cat_theme.phtml?theme=1"><button class="but2">Добавить</button></a></div>
+     </td>
+    </tr>
+   <? } ?>
+   <tr>
+    <td><br><br></td>
+   </tr>
+  </table>
+  <table class="form-table-zakaz1">
+   <tr>
+    <td <table width="100%" align="right">
+     <?
+
+       $res2 = mysqli_query($connection, "SELECT * FROM themes");
+       while ($row2 = mysqli_fetch_array($res2)) {
+     ?>
+      <table class="table-zakaz1">
+       <tr>
+        <td class="input-line1">
+         № <?= $row2["id_theme"] ?>
+        </td>
+        <td></td>
+       </tr>
+      </table>
+      <table class="table-zakaz1">
+       <tr>
+        <td class="input-line2">
+         <?= $row2["name_theme"] ?>
+
+        <td class="input-line3">
+         <div class="d-polosa"><button class="buti"><a href="info_cat_theme.phtml?theme=1&id_theme=<? print $row2["id_theme"]; ?>"><i class="fas fa-info"></i></a></button></div>
+        </td>
+    </td>
+    <? if ($items_cats_themes == 2) { ?>
+     <td class="input-line2">
+      <div class="d-polosa"> <a href="edit_cat_theme.phtml?theme=1&id_theme=<? print $row2["id_theme"]; ?>"><button class="but">Изменить</button></a></div>
+     </td>
+     <td class="input-line2">
+      <div class="d-polosa1"> <a href="del_cat_theme.phtml?theme=1&id_theme=<? print $row2["id_theme"]; ?>"><button class="but1">Удалить</button></a></div>
+     </td>
+    <? } ?>
+   </tr>
+  </table>
+ <? } ?>
+
+ </table>
+
+ </td>
+ </tr>
+
+ </table>
+ <table>
+  <tr>
+   <td><br><br><br><br><br><br></td>
+  </tr>
+ </table>
+ </div>
+
+</body>
+
+</html>
+<? }
+ } ?>

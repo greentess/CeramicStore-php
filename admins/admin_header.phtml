@@ -1,0 +1,63 @@
+<?php
+header("Cache-control:no-cache");
+session_start();
+$log = $_SESSION["log"];
+?>
+<html>
+
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=cp1251" />
+ <link href="css/admin_header.css" rel="stylesheet">
+ <title>CERAMIC vibes</title>
+ <link rel="shortcut icon" href="картинки/favicon.ico" type="image/x-icon">
+</head>
+
+<body bgcolor="#eceae6" style="font-family:Helvetica">
+ <div class="table2">
+  <table>
+   <tr>
+    <td class="polosasverhu">
+     АДМИНИСТРАТИВНАЯ ПАНЕЛЬ | АДМИНИСТРАТИВНАЯ ПАНЕЛЬ | АДМИНИСТРАТИВНАЯ ПАНЕЛЬ | АДМИНИСТРАТИВНАЯ ПАНЕЛЬ | АДМИНИСТРАТИВНАЯ ПАНЕЛЬ | АДМИНИСТРАТИВНАЯ ПАНЕЛЬ | АДМИНИСТРАТИВНАЯ ПАНЕЛЬ | АДМИНИСТРАТИВНАЯ ПАНЕЛЬ
+    </td>
+   </tr>
+  </table>
+ </div>
+
+ <div class="table1">
+
+  <table>
+
+   <td align="left" class="menu" style=" width:50%; font-size: 15px;">
+    <p class="menu-links1" style="font-size: 15px;"><a href="authorization.phtml">CERAMIC vibes / панель управления</a></p>
+   </td>
+   <? if (!isset($log)) { ?>
+    <td align="right" class="menu" style="width:50%; font-size: 15px;">
+     <p class="menu-links"><a href="authorization.phtml">ВОЙТИ</a></p>
+    </td>
+    </td>
+   <?
+   } else { ?>
+    <td align="right" class="menu" style="width:50%; font-size: 15px;">
+     <p class="menu-links">вы - АДМИНИСТРАТОР</p>
+    </td>
+   <? } ?>
+  </table>
+
+  <table>
+   <tr class="granica">
+    <td align="left" class="menu" style="width:50%; font-size: 15px;">
+     <p class="menu-links"> <a href="admin_index.phtml?type=0">ГЛАВНАЯ</a></p>
+    </td>
+    <? if (!isset($log)) {
+    } else { ?>
+     <td align="right" class="menu" style="width:50%; font-size: 15px;">
+      <p class="menu-links"><a href="admin_exit.php">ВЫХОД</a></p>
+     </td>
+    <? } ?>
+   </tr>
+  </table>
+
+ </div>
+</body>
+
+</html>

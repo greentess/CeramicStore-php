@@ -1,0 +1,71 @@
+
+input[type=checkbox] {
+  width: 50px;
+  height: 50px;
+  
+}
+
+*
+{
+box-sizing: border-box;
+}
+.product-item 
+{
+  float:left;
+  width: 17vw;
+  text-align: center;
+  margin-top: 4vw;
+  margin-left:10vw;
+  border-bottom: 2px solid #F5F5F5;
+  background: white;
+  font-family: "Helvetica";
+  transition: .3s ease-in;
+}
+.product-item:hover 
+{
+  border-bottom: 2px solid #92a489eb;
+}
+.product-item img 
+{
+  display: block;
+  width: 17vw;
+}
+.product-list 
+{
+  background: #fafafa;
+  padding: 2vw 0;
+  width:17vw;
+}
+.product-list h3 
+{
+  font-size: 1.1vw;
+  font-weight: 4;
+  color: #444444;
+  margin: 0 0 1vw 0;
+}
+.price 
+{
+  font-size: 1vw;
+  color: #705d43;
+  display: block;
+  margin-bottom: 1vw;
+}
+.button
+{
+  text-decoration: none;
+  display: inline-block;
+  padding: 0 2vw;
+  background: #cccccc;
+  color: white;
+  text-transform: uppercase;
+  font-size: 0.9vw;
+  line-height: 3vw;
+  transition: .3s ease-in;
+  margin-bottom: 2vh;
+}
+
+
+.product-item:hover .button 
+{
+  background: #92a489eb;
+}

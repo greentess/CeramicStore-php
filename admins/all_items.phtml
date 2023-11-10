@@ -1,0 +1,110 @@
+<?$start=session_start();
+include("connect.phtml");
+$log=$_SESSION["log"];
+if(!isset($log)){include("authorization.phtml");} else{
+    $items_cats_themes=$_SESSION["items_cats_themes"];
+    if($items_cats_themes==0){?>Ошибка! У вас нет доступа к списку товаров.<?} else{
+
+?>
+<html>
+<head>
+<link href="css/all_items.css" rel="stylesheet">
+</head>
+
+<body>
+<?
+$query1 = mysqli_query($connection,"SELECT * FROM items");
+$result1 = mysqli_num_rows($query1);
+?>
+
+<div class="ddd">
+  <table class="form-table-zakaz100">
+   <tr>
+    <td class="subtitle-zakaz1">
+     <form method="post" action="to_excel_item.php?tab=2">
+      <a><i class="fas fa-download" style="margin-left: 14px;color:#555;"></i></a><input type="submit" name="export" class="btn btn-success" value="Экспорт" />
+     </form>
+    </td>
+   </tr>
+   <tr>
+    <form method="post" action="from_excel.php?tab=2" enctype="multipart/form-data">
+     <td class="subtitle-zakaz1">
+      <div class="example-2">
+       <div class="form-group">
+        <input type="file" name="excel" id="excel" class="input-file">
+        <label for="excel" class="btn btn-tertiary js-labelFile">
+         <i class="icon fa fa-check"></i>
+         <span class="js-fileName">Загрузить файл</span>
+        </label>
+       </div>
+      </div>
+     </td>
+     <td class="subtitle-zakaz1">
+      <input type="submit" name="import" value="Импорт" style="margin-left: 10px; text-align: center;" />
+     </td>
+    </form>
+   </tr>
+  </table>
+ </div>
+
+
+<table class="form-table-zakaz"  >
+        <tr>
+            <td class="subtitle-zakaz">
+                Товары<br>
+            </td>
+        </tr>
+        <tr>
+            <td class="subtitle-zakaz11">
+                Всего товаров - <? print $result1; ?>
+            </td>
+        </tr>
+        <?if ($items_cats_themes==2){?>
+        <tr>
+                    <td class="subtitle-zakaz11">
+                        <a href="new_item.phtml"><button class="but">Добавить</button></a>
+                    </td>
+        </tr>
+        <?}?>
+        <tr>
+                    <td class="subtitle-zakaz1">
+                        <div class="d1">
+                            <form method="post" action="admin_index.phtml?type=5">
+                                <input  id="search" name="search" type="text" placeholder="Искать здесь...">
+                                <button type="submit"></button>
+                            </form>
+                        </div>
+                    </td>
+
+        </tr>
+        <tr>
+            <td><br><br></td>
+        </tr>
+    </table>
+<?
+
+        $strSQL1="SELECT * FROM items";
+        $result1=mysqli_query($connection,$strSQL1) or die("Упс2!");
+        ?>
+<div class="cat">
+        <?
+          while($row=mysqli_fetch_array($result1))
+      {?>
+        <div class="product-item">
+        <a href="card_item.phtml?id_item=<?print $row["id_item"];?>"><img src="<?print $row["image"];?> "></a>
+            <div class="product-list">
+              <h3><?print $row["name_item"];?></h3>
+                <span class="price"><?print $row["price"];?> руб.</span>
+                <?if ($items_cats_themes==2){?>
+                <a href="edit_item.phtml?id_item=<?print $row["id_item"];?>" class="button">Редактировать</a>
+                <br>
+                <a href="del_item.phtml?id_item=<?print $row["id_item"];?>" class="button1">Удалить</a>
+                <?}?>
+            </div>
+        </div>	
+      <?}
+      ?>
+</div>
+</body>
+</html>	
+<?}?><?}?>

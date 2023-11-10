@@ -1,0 +1,99 @@
+<?include("shapka.phtml");?>
+
+<?$id_basket=$_COOKIE["id_basket"]; 
+$title="Ваша корзина";
+
+include("connect.phtml");
+$strSQL1="SELECT COUNT(*) as kolvo FROM basket_items WHERE id_basket='".$id_basket."'";
+$link = mysqli_connect("localhost","root","");
+mysqli_set_charset($link, 'mb4');
+mysqli_select_db($link,"ceramic");
+$result1=mysqli_query($link,$strSQL1) or die("Что-то пошло не так1!");
+$row=mysqli_fetch_array($result1); 
+
+if($row["kolvo"]==0)
+    {
+    ?>
+                    <div class="empcart">
+                        Ваша корзина пуста, положите в неё что-нибудь интересненькое и возвращайтесь!
+                    </div>
+    </div>
+    <?
+    }
+else
+   {
+		$strSQL1="SELECT * FROM items, basket_items WHERE items.id_item=basket_items.id_item AND basket_items.id_basket='".$id_basket."'";	
+	    $result1=mysqli_query($link,$strSQL1) or die("Что-то пошло не так2!");
+?>
+<br></br>
+
+<html>
+
+
+
+<body>
+    <div class="shopping-cart">
+        <div>
+            <div class="title">
+            <?print $title;?>
+            </div>
+            <div class="del">
+            <a href="dobasket.php?type=4;?>" title="Ваша корзина"><i class="fas fa-trash-can"> </i></a>
+            </div>
+        </div>
+        <? 
+        $sum=0; 
+        $totalsum=0;
+        while($row=mysqli_fetch_array($result1))
+        {
+        ?>
+        <!-- ����� #1 -->
+        <div class="item">
+                <div class="buttons">
+                    <span class="delete-btn">
+                    <a href="dobasket.php?type=3&id_item=<?print $row["id_item"];?>" title="Удалить" ><img src="https://designmodo.com/demo/shopping-cart/delete-icn.svg" alt=""/></a>
+                    </span>
+                </div>
+        
+                <div class="image">
+                    <img width="100%" src="<?print $row["image"];?>" alt="" />
+                </div>
+        
+                <div class="description">
+                    <span><?print $row["name_item"];?></span>
+                    <br>
+                    <span><?print $row["price"];?> руб.</span>
+                </div>
+        
+                <div class="quantity">
+                    <button class="plus-btn" type="button" name="button">
+                        <a href="dobasket.php?type=1&id_item=<?print $row["id_item"];?>" title="Больше"><i class="fas fa-plus"> </i></a>
+                    </button>
+                    <input type="text" name="name" value="<?print $row["kolvo"];?>">
+                    <button class="minus-btn" type="button" name="button">
+                        <a href="dobasket.php?type=2&id_item=<?print $row["id_item"];?>"title="Меньше"><i class="fas fa-minus"> </i></a>
+                    </button>
+                </div>
+                <?
+                $sum=$row["price"]*$row["kolvo"];
+                $totalsum=$totalsum+$sum;
+                ?>
+                <div class="total-price"><?print $sum?> руб.</div>
+        </div>
+        <?
+        }
+        ?> 
+        <div class="totaltotal-price">Сумма к оплате: <?print $totalsum?> руб.</div>
+        <div  class="d-polosa">  <a href="order.phtml"><button class="but">Перейти к оформлению заказа</button></a></div>
+        
+    </div>
+<br>
+<br>
+</body>
+
+<?
+	}
+?>
+<?include("footer.phtml");?>
+</html>
+

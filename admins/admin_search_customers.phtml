@@ -1,0 +1,120 @@
+<? $start = session_start();
+$log = $_SESSION["log"];
+if (!isset($log)) {
+ include("authorization.phtml");
+} else {
+ $customers = $_SESSION["customers"];
+ if ($customers == 0) { ?>Ошибка! У вас нет доступа к списку покупателей.<? } else {
+                                                                         ?>
+<html>
+
+<head>
+ <link href="css/all_customers.css" rel="stylesheet">
+</head>
+
+<?php
+include "connect.phtml";
+$output = '';
+if (isset($_POST['search'])) {
+$search = $_POST['search'];
+$search = preg_replace("#[a-zа-я0-9_]i#", "", $search);
+$query = mysqli_query($connection, "SELECT * FROM customers WHERE im LIKE '%$search%' or fam LIKE '%$search%' or mail LIKE '%$search%' or phone LIKE '%$search%' or login LIKE '%$search%'") or die("Could not search");
+$count = mysqli_num_rows($query);
+if ($count == 0) {
+ $output = "Покупатели не были найдены!";
+print $output;
+} else { ?>
+
+  <div class="mydiv">
+   <table class="form-table-zakaz1">
+    <tr>
+     <td <table width="100%" align="right">
+      <?
+       while ($row1 = mysqli_fetch_array($query)) {
+      ?>
+       <table class="table-zakaz1">
+        <tr>
+         <td class="input-line1" style="border-top: none;padding-top: 50px;color:dimgrey;">
+          ID: <?= $row1["id_customer"] ?>
+         </td>
+        </tr>
+       </table>
+       <table class="table-zakaz1">
+        <tr>
+         <? if ($customers == 2) { ?>
+          <td class="input-line11">
+           <div class="d-polosa"> <a href="del_customer.phtml?id_customer=<? print $row1["id_customer"]; ?>"><button class="buti-d"><a href="del_customer.phtml?id_customer=<? print $row1["id_customer"]; ?>" style="font-size: 19px; margin-bottom: 5px;"><i class="fas fa-user-minus"></i></a><br></button></a></div>
+          </td>
+         <? } ?>
+         <td class="input-line1">
+          Логин: <?= $row1["login"] ?>
+         </td>
+
+        </tr>
+       </table>
+       <table class="table-z1">
+        <tr>
+         <td class="input-line2">
+         </td>
+         <td class="input-line2">
+         </td>
+     </td>
+     <td class="input-line2">
+      <?= $row1["phone"] ?>
+     </td>
+     <? if ($customers == 2) { ?>
+      <? if ($row1["phone"] != '') { ?>
+       <td class="input-line2">
+        <div class="d-polosa"><button class="buti"><a style="font-size: 19px;" href="tel:+79874162330"><i class="fas fa-phone"></i></a><br></button></div>
+       </td>
+     <? }
+       } ?>
+    </tr>
+   </table>
+   <table class="table-z2">
+    <tr>
+
+     <td class="input-line2">
+      <?= $row1["fam"] ?> <?= $row1["im"] ?>
+     </td>
+
+    </tr>
+   </table>
+   <table class="table-z3">
+    <tr>
+     <td class="input-line2">
+     </td>
+     <td class="input-line2">
+     </td>
+     <td class="input-line2">
+      <?= $row1["mail"] ?>
+     </td>
+     <? if ($customers == 2) { ?>
+      <? if ($row1["mail"] != '') { ?>
+       <td class="input-line2">
+        <div class="d-polosa"><button class="buti"><a style="font-size: 19px;" href="mailto:<? print $row1["mail"] ?>?subject=Студия%20керамики%20ceramic%20vibes&Body=Здравствуйте.%0D%0AМы%20обновили%20ассортимент%20нашей%20студии.%20Ждем%20Вас%20в%20нашем%20онлайн-магазине."><i class="fas fa-envelope"></i></a><br></button></div>
+       </td>
+     <? }
+         } ?>
+    </tr>
+   </table>
+  <? } ?>
+
+  </table>
+
+  </td>
+  </tr>
+
+  </table>
+  <table>
+   <tr>
+    <td><br><br><br><br><br><br></td>
+   </tr>
+  </table>
+  </div>
+<? }
+       }
+?>
+<? }
+ } ?>
+

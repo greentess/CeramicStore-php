@@ -1,0 +1,116 @@
+
+  .vl {
+    border-left: 1px solid rgb(152, 156, 144);
+    height: 40%;
+    position: absolute;
+    margin-left: 14%;
+    margin-top: 300px;
+    z-index: 20000;
+}
+/* .tr {
+    border-top: 1px solid rgb(152, 156, 144);
+    width: 30%;
+    position: absolute;
+    margin-left: 10%;
+    margin-top: 600px;
+    z-index: 20000;
+} */
+
+
+.form-table-zakaz{
+  width:50%;
+  margin-left: 80px;
+  margin-top: 45px;
+  float: left;
+}
+.form-table-zakaz1{
+    width:50%;
+    margin-left: 80px;
+    float: left;
+  }
+.form-table-zakaz .subtitle-zakaz{
+    text-align: left;
+    color: rgb(83, 90, 70);
+    font-family: Helvetica;
+    font-weight: 300;
+    font-size: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 0;
+    width: 100%;
+}
+.form-table-zakaz .subtitle-zakaz1{
+    text-align: left;
+    color: rgb(83, 90, 70);
+    font-family: Helvetica;
+    font-weight: 300;
+    font-size: 15px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 0;
+    width: 100%;
+}
+.table-zakaz{
+  border: 0;
+  width: 100%;
+  margin-top: 45px;
+  float: left;
+}
+.table-zakaz1{
+    border: 0;
+    width: 100%;
+    margin-top: 10px;
+    float: left;
+  }
+.table-zakaz .tr1{
+    border-bottom: 1px solid rgb(78, 76, 76) ;
+  }
+.table-zakaz1 .input-line1 {
+  color: rgb(52, 51, 51);
+  letter-spacing: 0.02rem;
+  border-top:1px solid rgb(78, 76, 76) ;
+  width: 100%;
+  font-weight: bolder ;
+  padding-left: 40px;
+  padding-top: 10px;
+}
+ .table-zakaz1 .input-line2 {
+  color: rgb(52, 51, 51);
+  letter-spacing: 0.02rem;
+  border:0px;
+  width: 100%;
+  font-weight: 1000 ;
+  border: 0;
+  padding-top: 20px;
+  padding-left: 40px;
+
+}
+
+
+
+.but {
+    outline: 0;
+    border: 0;
+    background: none;
+    border: 1px solid #453535;
+    color: #515151;
+    text-transform: uppercase;
+    width: 80%;
+    font-family: inherit;
+    margin-left: 5px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    font-size: 15px;
+    max-width: 300px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+} 
+.but:hover {background: darken(rgb(255, 255, 255), 2%);
+    border: 1px solid #374134;
+    color: #ffffff;
+    cursor: pointer;
+    background-color: #4b5b4790;
+}
+
+
+

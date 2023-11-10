@@ -1,0 +1,152 @@
+* {
+    box-sizing: border-box;
+  }
+   
+  html,
+  body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    background-color: #eceae6;
+    font-family: 'Roboto', sans-serif;
+  }
+ 
+
+.shopping-cart {
+    width: 55%;
+    margin: 30px auto 30px 12.5%;
+    background: #ffffff00;
+    display: flex;
+    flex-direction: column;
+    float: left;
+    font-family: Helvetica;
+
+  }
+
+  .title1 {
+    height: 5vh;
+    border-bottom: 1px solid #60755b;
+    padding: 20px 30px;
+    color: #5E6977;
+    font-size: 2vh;
+    font-weight: 400;
+    width: 100%;
+    float: left !important;
+  }
+  .title {
+    height: 5vh;
+    padding: 20px 30px;
+    color: #5E6977;
+    font-size: 2vh;
+    font-weight: 400;
+    width: 100%;
+    float: left !important;
+  }
+  .item {
+    padding: 5px 5px 5px 5px;
+    height: 150px;
+    display: flex;
+    vertical-align: middle;
+    border-bottom:  1px solid #8996a1;
+
+  }
+   
+  .item:nth-child(3) {
+    border-top:  1px solid #8996a1;
+    border-bottom:  1px solid #8996a1;
+  }
+
+  .image {
+    width: 140px;
+    height: 140px;
+
+  }
+
+  .description {
+    padding-top: 15px;
+    margin-right: 1vw;
+    width: 15vw;
+
+  }
+   
+  .description span {
+    display: block;
+    font-size: 14px;
+    color: #43484D;
+    font-weight: 400;
+  }
+   
+  .description span:first-child {
+    margin-bottom: 1vh;
+    font-size: 20px;
+    color: #4e614f;
+  }
+  .description span:last-child {
+    margin-bottom: 1vh;
+    font-size: 15px;
+    color: #4e614f;
+  }
+ 
+   
+  button[class*=btn] {
+    width: 2.5vw;
+    height: 2.5vw;
+    background-color: #dbdad746;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    min-height: 30px;
+    min-width: 30px;
+  }
+
+  .total-price {
+    width: 9vw;
+    padding-top: 10vh;
+    padding-bottom: 5px;
+    text-align: center;
+    font-size: 2vh;
+    color: #4e614f;
+    font-weight: 300;
+    vertical-align: middle;
+    margin-bottom: 5px;
+    margin-left: 1vw;
+    margin-right: 0;
+
+  }
+  .totaltotal-price {
+    padding-top: 20px;
+    padding-bottom: 5px;
+    font-weight: 300;
+    vertical-align: middle;
+    height: 6vh;
+    width: 100%;
+    text-align: right;
+    padding-right: 30px;
+
+    color: #5E6977;
+    font-size: 2vh;
+    font-weight: 400;
+  }
+
+   .shopping-cart .title1 { 
+    height: 5vh;
+    border-bottom: 1px solid #60755b;
+    padding: 20px 30px 10px;
+    color: #5E6977;
+    font-size: 2vh;
+    font-weight: 400;
+    width: 100%;
+    float: left !important;
+    } 
+
+    .shopping-cart .title1 a { 
+    display: inline-block; 
+ 
+    text-decoration: none; 
+    color: inherit; 
+    transition: ease .25s; 
+    font-family:  Helvetica; 
+    } 
+    .shopping-cart .title1 a:hover { 
+        color: #668065;
+    } 

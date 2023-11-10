@@ -1,0 +1,102 @@
+<?$start=session_start();
+$log=$_SESSION["log"];
+if(!isset($log)){include("authorization.phtml");} else{
+    $items_cats_themes=$_SESSION["items_cats_themes"];
+    if($items_cats_themes!=2){?>Ошибка! У вас нет доступа к удалению категорий и тем.<?} else{
+
+include("admin_header.phtml");
+?>
+<?include("connect.phtml");?>
+<html>
+    <head>
+        <link href="css/new_item.css" rel="stylesheet">
+        <link href="css/del_item1.css" rel="stylesheet">
+    </head>
+
+    <?
+    $id_cat=$_GET["id_cat"];
+    $id_theme=$_GET["id_theme"];
+    $key=$_POST["key"]; 
+
+    $cat = $_GET["cat"];
+    $theme = $_GET["theme"];
+    ?>
+    
+    <?
+    if ($cat==1){ 
+        if ($key==1)    
+        {
+            $strSQL="SELECT * FROM categories  WHERE id_cat='".$id_cat."'";
+            $result=mysqli_query($connection, $strSQL)or die("Не могу выполнить запрос!");  
+            if($row=mysqli_fetch_array($result))
+            {
+                $strSQL1="DELETE FROM categories WHERE id_cat='".$id_cat."'";			
+                $result1=mysqli_query($connection, $strSQL1) or die("Не могу выполнить запрос!");	               
+                $message="<div style='width:100%;height:75%; background-color:white;'><div class='subdiv'><div class='subtitle2'><b>Категория была успешно удалена.</b></div><br> <div class='aftermes1'><a href='admin_index.phtml?type=6'>Вернуться к списку категорий и тематик</a> </div></div></div>";
+                print $message;	
+            }
+        }
+        else
+        {
+        ?>
+            <form class="my-form" action=del_cat_theme.phtml?cat=1&id_cat=<?print $id_cat;?> method=post>
+                <div style='width:100%;height:76.2%; background-color:white;'>
+                    <input class="button" type="submit" value="Да,удалить">
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <div class='subdiv'>
+                        <div class='aftermes'>
+                            <a href='admin_index.phtml?type=6'>Нет, хочу вернуться к списку категорий и тем</a> 
+                        </div>
+                    </div>
+                </div>
+                <input type=hidden  name=key value=1>
+            </form>
+        <?
+        }
+    }
+    ?>
+
+<?
+    if ($theme==1){ 
+        if ($key==1)    
+        {
+            $strSQL="SELECT * FROM themes  WHERE id_theme='".$id_theme."'";
+            $result=mysqli_query($connection, $strSQL)or die("Не могу выполнить запрос!");  
+            if($row=mysqli_fetch_array($result))
+            {
+                $strSQL1="DELETE FROM themes WHERE id_theme='".$id_theme."'";			
+                $result1=mysqli_query($connection, $strSQL1) or die("Не могу выполнить запрос!");	               
+                $message="<div style='width:100%;height:75%; background-color:white;'><div class='subdiv'><div class='subtitle2'><b>Тематика была успешно удалена.</b></div><br> <div class='aftermes1'><a href='admin_index.phtml?type=6'>Вернуться к списку категорий и тематик</a> </div></div></div>";
+                print $message;	
+            }
+        }
+        else
+        {
+        ?>
+            <form class="my-form" action=del_cat_theme.phtml?theme=1&id_theme=<?print $id_theme;?> method=post>
+                <div style='width:100%;height:75%; background-color:white;'>
+                    <input class="button" type="submit" value="Да,удалить">
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <div class='subdiv'>
+                        <div class='aftermes'>
+                            <a href='admin_index.phtml?type=6'>Нет, хочу вернуться к списку категорий и тем</a> 
+                        </div>
+                    </div>
+                </div>
+                <input type=hidden  name=key value=1>
+            </form>
+        <?
+        }
+    }
+    ?>
+
+<?
+include("admin_footer.phtml");
+?>
+<?}}?>

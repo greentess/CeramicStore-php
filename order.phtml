@@ -1,0 +1,142 @@
+<?$start=session_start();?>
+<?include("shapka.phtml"); ?>
+
+<head>
+		<link href="css/order.css" rel="stylesheet">
+</head>
+<?
+    $id=$_SESSION["id"];
+    $log=$_SESSION["log"];
+	$title="Ваш заказ";
+	$id_basket=$_COOKIE["id_basket"];
+	include("connect.phtml");
+
+    if(!isset($log)) 
+    {
+        $message="<div class='subtitlediv'><div class='subdiv'><div class='subtitle2'><b>Вы не авторизованы.</b></div></div></div>";              
+        print $message;
+    }
+	else
+	{
+        $strSQL1="SELECT COUNT(*) as count FROM basket_items WHERE id_basket='".$id_basket."'";
+        $result1=mysqli_query($connection, $strSQL1) or die("Упс2!");
+        $row=mysqli_fetch_array($result1); 
+        if($row["count"]==0)
+        {
+            $message="<div class='subtitlediv'><div class='subdiv'><div class='subtitle2'><b>Ваша корзина пуста, мы не можем оформить заказ!</b></div></div></div>"; 
+            print $message;             
+        }
+        else
+        {
+            $strSQL1="SELECT * FROM items, basket_items WHERE items.id_item=basket_items.id_item AND id_basket='".$id_basket."'";			
+            $result1=mysqli_query($connection, $strSQL1) or die("Упс2!");
+            $allkolvo=0; 
+            while($row=mysqli_fetch_array($result1))
+            {
+                $allkolvo=$allkolvo+$row["kolvo"];
+            }
+            $strSQL1="SELECT * FROM items, basket_items WHERE items.id_item=basket_items.id_item AND id_basket='".$id_basket."'";			
+            $result1=mysqli_query($connection, $strSQL1) or die("Упсик2!");
+
+            ?>
+            <div class="shopping-cart">
+                <div>
+                    <div class="title">
+                    <?print $title;?>&nbsp;&nbsp;/&nbsp;&nbsp;<?print $allkolvo;?>&nbsp; шт.
+                    </div>
+                </div>
+                <? 
+                $sum=0;  
+                $totalsum=0;
+                while($row=mysqli_fetch_array($result1))
+                {
+                    ?>
+                    <div class="item">
+                        <div class="image">
+                            <img width="100%" src="<?print $row["image"];?>" alt="" />
+                        </div>
+                        <div class="description">
+                            <span><?print $row["name_item"];?></span>
+                            <br>
+                            <span><?print $row["price"];?> руб.</span>
+                            <br>
+                            <span><?print $row["kolvo"];?> шт.</span>
+                        </div>
+                        <?
+                        $sum=$row["price"]*$row["kolvo"];
+                        $totalsum=$totalsum+$sum;
+                        ?>
+                        <div class="total-price"><?print $sum?> руб.</div>
+                    </div>
+                    <?
+                }
+                ?> 
+                <div class="totaltotal-price">Всего: <?print $totalsum?> руб.</div>
+                <div  class="d-polosa">  <a href="doorder.phtml"><button class="but">Оформить заказ</button></a></div> 
+            </div>
+            <?          
+            $strSQL2="SELECT * FROM customers WHERE id_customer='".$id."'";
+			$result2=mysqli_query($connection, $strSQL2)or die("Сломались!"); 
+            $row2=mysqli_fetch_array($result2)
+            ?>
+
+            <table class="table-zakaz" >
+                <tr >
+					<td class="input-line2">
+						Адрес
+					</td>
+				</tr>
+                <tr>
+					<td class="input-line1">
+                        <?print $row2["addr"]?>
+					</td>										
+				</tr>
+				<tr>
+					<td class="input-line2">
+						Способ доставки
+                    </td>
+				</tr>
+                <tr>
+					<td class="input-line1">
+                        Курьер
+					</td>
+				</tr>
+                <tr>
+					<td class="input-line2">
+						Контактные данные
+					</td>
+				</tr>
+                <tr>
+					<td class="input-line1">
+                        <?print $row2["fam"]?>&nbsp;<?print $row2["im"]?><br>
+                        <?print $row2["phone"]?><br>
+                        <?print $row2["mail"]?>
+					</td>
+				</tr>
+                <tr>
+					<td class="input-line2">
+						Оплата
+					</td>
+				</tr>
+                <tr>
+					<td class="input-line1">
+                        При получении
+				</td>
+				</tr>
+            </table>										
+		<br></br>
+		<br></br>
+		<br></br>
+        <br></br>
+		<br></br>
+		<br></br>
+        <br></br>
+		<br></br>
+		<br></br>
+	<?
+	}
+}
+	include("footer.phtml");
+    
+?>
+

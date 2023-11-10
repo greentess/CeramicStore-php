@@ -1,0 +1,62 @@
+<?$start=session_start();
+$log=$_SESSION["log"];
+if(!isset($log)){include("authorization.phtml");} else{
+    $customers=$_SESSION["customers"];
+    if($customers!=2){?>Ошибка! У вас нет доступа к удалению покупателей.<?} else{
+
+include("admin_header.phtml");
+?>
+<?include("connect.phtml");?>
+<html>
+    <head>
+        <link href="css/new_item.css" rel="stylesheet">
+        <link href="css/del_item1.css" rel="stylesheet">
+    </head>
+
+    <?
+    $id_customer=$_GET["id_customer"];
+    $key=$_POST["key"]; 
+    ?>
+    
+    <?
+        if ($key==1)    
+        {
+            $strSQL="SELECT * FROM customers  WHERE id_customer='".$id_customer."'";
+            $result=mysqli_query($connection, $strSQL)or die("Не могу выполнить запрос!");  
+            if($row=mysqli_fetch_array($result))
+            {
+                $strSQL1="DELETE FROM customers WHERE id_customer='".$id_customer."'";			
+                $result1=mysqli_query($connection, $strSQL1) or die("Не могу выполнить запрос!");	               
+                $message="<div style='width:100%;height:75%; background-color:white;'><div class='subdiv'><div class='subtitle2'><b>Аккаунт пользователя был успешно удален из базы.</b></div><br> <div class='aftermes1'><a href='admin_index.phtml?type=7'>Вернуться к списку покупателей</a> </div></div></div>";
+                print $message;	
+            }
+        }
+        else
+        {
+        ?>
+            <form class="my-form" action=del_customer.phtml?id_customer=<?print $id_customer;?> method=post>
+                <div style='width:100%;height:75%; background-color:white;'>
+                    <input class="button" type="submit" value="Удалить аккаунт">
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <div class='subdiv'>
+                        <div class='aftermes'>
+                            <a href='admin_index.phtml?type=7'>Вернуться к списку покупателей</a> 
+                        </div>
+                    </div>
+                </div>
+                <input type=hidden  name=key value=1>
+            </form>
+        <?
+        }
+    
+    ?>
+
+
+
+<?
+include("admin_footer.phtml");
+?>
+<?}}?>

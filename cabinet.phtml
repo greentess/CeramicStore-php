@@ -1,0 +1,278 @@
+<?$start=session_start();
+include("shapka.phtml");?>
+<html>
+<head>
+      <!-- <meta http-equiv="Content-Type" content="text/html; charset=cp1251" /> -->
+      
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  	<link href="css/catalog.css" rel="stylesheet">
+		<link href="css/cabinet.css" rel="stylesheet">
+</head>
+<?
+	$title="������ �������";
+	$log=$_SESSION["log"];
+	$id=$_SESSION["id"];
+	$type=$_GET["type"];
+	$mykey=$_POST["mykey"];
+	$mykey1=$_POST["mykey1"];
+
+	$fam=$_POST["fam"];
+	$im=$_POST["im"];
+	$addr=$_POST["addr"];
+	$mail=$_POST["mail"];
+	$phone=$_POST["phone"];
+	$subscribe=$_POST["subscribe"];
+
+	if(!isset($log))
+		{
+			$success=false; 
+			$message="<div class='subtitlediv'><div class='subdiv'><div class='subtitle2'><b>Вы еще не вошли в аккаунт :(</b></div></div></div>";              
+		}
+	else
+		$success=true;
+	print $message;
+	?>
+
+
+<?
+	if($success)
+		{
+			include("connect.phtml");
+			$strSQL="SELECT * FROM customers WHERE id_customer='".$id."'";
+			$result=mysqli_query($connection, $strSQL)or die("Что-то не так!"); 
+			
+			if($row=mysqli_fetch_array($result))
+				{
+?>
+<!-- <div class="vl"></div>
+<div class="tr"></div> -->
+				<table class="tab-title">
+				<tr>
+						<td>Личный кабинет</td>
+				</tr>
+				</table>
+
+<?              
+				include("cabinet_nav.phtml");
+				if ($mykey==1){
+						if($fam!="" && $im!="" && $addr!="" && $mail!=""&& $phone != "")
+							{
+								$strSQL1="UPDATE customers SET fam='".$fam."', im='".$im."',addr='".$addr."', mail='".$mail."',  phone='".$phone."' WHERE id_customer=".$id;			
+								$result1=mysqli_query($connection, $strSQL1) or die("Что-то не так!");
+								$_SESSION["log"]=$fam." ".$im;//сессия
+?>
+
+						<?
+								$message="<div class='mes2'><b> Данные были обновлены!</b> </div>";                 
+							}
+						else
+						$message="<div class='mes'><b>Все поля необходимо заполнить!</b> </div>"; 
+						
+					}
+				if ($mykey1==1){
+						
+								$strSQL1="UPDATE customers SET  subscribe='".$subscribe."' WHERE id_customer=".$id;			
+								$result1=mysqli_query($connection, $strSQL1) or die("Что-то не так!");
+								
+					}
+					print $message;	
+
+				if ($type==1)
+				{
+
+
+					
+
+				?>
+				<form class="my-form" action=cabinet.phtml?type=1 method=post>
+
+							<table class="form-table">
+								<tr><td class="subtitle">Ваш аккаунт<br></td></tr>
+								<tr><td><br><br></td></tr>
+
+								<tr>
+									<td>
+										<input type='text' name=fam value="<?if ($mykey==1) Echo $_POST['fam']; else print $row["fam"];  ?>" placeholder='Фамилия' class='input-line'></input>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<input type='text' name=im value="<?if ($mykey==1) Echo $_POST['im']; else print $row["im"];  ?>" placeholder='Имя' class='input-line'></input>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<input type='text' name=phone value="<?if ($mykey==1) Echo $_POST['phone']; else print $row["phone"];  ?>" placeholder='Телефон' class='input-line'></input>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<input type='text' name=mail value="<?if ($mykey==1) Echo $_POST['mail']; else print $row["mail"];  ?>" placeholder='Логин' class='input-line'></input>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<input type='text' name=addr value="<?if ($mykey==1) Echo $_POST['addr']; else print $row["addr"];  ?>" placeholder='Адрес' class='input-line'></input>
+									</td>
+								</tr>
+								<input type=hidden value=1 name=mykey>			
+
+				
+								<tr>
+									<td align="center" colspan="6">
+									<input class="ghost-round" type="submit" value="Сохранить"></td>
+								</tr>
+							</table>
+				</form>
+
+				<?
+
+
+				
+				}
+
+
+
+				if ($type==3)
+				{
+
+				?>
+				<form class="my-form" action=cabinet.phtml?type=3 method=post>
+
+
+
+								<div class="product-item">
+								<img src="картинки/подписка.jpg">
+									<div class="product-list">
+									<h3>Подписка на наши новости</h3>
+									<span>
+										<input type="checkbox" value="1" name="subscribe" width="50px" height="50px"
+											<? if($row["subscribe"] or $_POST['subscribe']==1) 
+											print "checked"; ?>>
+									</span>
+
+									</div>
+								</div>	
+
+								<table class="form-table">			
+								<tr>
+									<td align="center" colspan="6">
+									<br><br>
+									<input class="ghost-round" type="submit" value="Сохранить"></td>
+								</tr>
+								<input type=hidden value=1 name=mykey1>
+							</table>
+				</form>
+
+				<?
+
+
+				
+				}
+
+
+			}
+			?>	
+			
+			<?
+			if ($type==2){
+			?>
+				
+				<?
+					$strSQL1="SELECT * FROM orders WHERE id_customer='".$id."' ORDER BY date_order DESC";
+					$result1=mysqli_query($connection, $strSQL1)or die("Сломались1!");
+			
+									?>
+							<table class="form-table-zakaz">
+								<tr><td class="subtitle-zakaz">Ваши заказы<br></td></tr>
+								<tr><td><br><br></td></tr>
+								<tr>
+									<td>
+										<table  width="100%" align="right" >
+										<?
+											$sum=0; 
+											while($row1=mysqli_fetch_array($result1))
+											{
+												$order=$row1["id_order"];
+
+												$strSQL10="SELECT * FROM items, order_items WHERE items.id_item=order_items.id_item and id_order='".$order."'";
+												$result10=mysqli_query($connection, $strSQL10) or die("Упс2!");
+												$allkolvo=0;
+												$allsum=0; 
+												while($row10=mysqli_fetch_array($result10))
+												{
+													$allkolvo=$allkolvo+$row10["kolvo"];
+													$allsum=$allsum+$row10["kolvo"]*$row10["price"];
+												}
+
+												$strSQL2="SELECT * FROM items, order_items WHERE items.id_item=order_items.id_item and id_order='".$order."'";
+												$result2=mysqli_query($connection, $strSQL2) or die("Снова упс2!");
+												$row2=mysqli_fetch_array($result2)
+												?>
+												<table class="table-zakaz" >
+													<tr>
+														<td class="input-line1">
+															От <?=$row1["date_order"]?>
+														</td>
+														<td></td>
+													</tr>
+													<tr >
+														<td class="input-line2">
+														Заказ № <? print $order?>
+														</td>
+													</tr>
+												</table>
+												<table class="table-zakaz1">
+													<tr >
+														<td  class="input-line3">
+														<? print $allkolvo?> шт.
+														</td>
+														<td class="input-line3">
+														<?print $allsum;?> руб.
+														</td>
+													</tr>
+												</table>
+												<table class="table-zakaz3">
+												<?
+													$strSQL3="SELECT * FROM items, order_items WHERE items.id_item=order_items.id_item and id_order='".$order."'";
+													$result3=mysqli_query($connection, $strSQL3) or die("Опять упс2!");
+													while($row3=mysqli_fetch_array($result3))
+														{
+														?>
+										
+															<tr class="input-line4">
+																<td><?print $row3["name_item"];?></td>
+															</tr>
+													
+												
+												<?}?>
+												</table>
+											<?
+											$sum=$sum+$allsum;
+											}													
+											?>
+											<table class="table-zakaz">
+												<tr>
+													<td class="input-line1" align="right" >Всего:<?print $sum;?></td>
+												</tr>
+											</table>	
+							</table>
+
+					
+				<?}?>
+										
+
+					<?
+											
+										
+mysqli_close($connection);				
+		}
+
+	
+	?>
+
+	
+<?
+include("footer.phtml");
+?>
+</html>

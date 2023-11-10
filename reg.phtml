@@ -1,0 +1,93 @@
+<?include("shapka.phtml");?>
+<head>
+      <!-- <meta http-equiv="Content-Type" content="text/html; charset=cp1251" /> -->
+      <link href="css/reg.css" rel="stylesheet">
+</head>
+<?
+	$title="����� �����������";
+	$mail=$_POST["mail"];
+	$login=$_POST["login"];
+	$pass=$_POST["pass"];
+	$pass2=$_POST["pass2"];
+
+
+	$type=$_POST["type"];
+	$subscribe=$_POST["subscribe"];
+	include("connect.phtml"); 
+?>   
+
+ <?
+	if($type==1)
+		{
+			if($mail!="" && $login!=""  && $pass!="" && $pass2!="" )
+				{
+					if($pass!=$pass2)
+						{	
+							$message="<div class='subtitle'><b>Введенные пароли не совпадают, будьте внимательнее!</b></div>";
+						}
+					else
+						{
+							$strSQL1="SELECT id_customer FROM customers WHERE login='".$login."'";
+							$result1=mysqli_query($connection, $strSQL1) or die("Что-то не так!");
+						
+							if($row=mysqli_fetch_array($result1))
+								{
+									$message="<div class='subtitle'><b>Пользователь с таким логином уже существует!</b></div>";
+								}
+							else
+								{
+									$strSQL1="INSERT INTO customers(mail, login, pass, subscribe) VALUES('".$mail."','".$login."','".$pass."','".$subscribe."')";
+									
+									$result1=mysqli_query($connection, $strSQL1)or die("ЧТо-то не так!");
+									
+									$message="<div class='subtitlediv'><div class='subdiv'><div class='subtitle2'><b>Ваш аккаунт был успешно создан.</b></div></div></div>";
+								
+									$success=true;
+								}
+						}
+				}
+			else
+			$message="<div class='subtitle'><b>Заполните все поля.</b></div>";
+		}
+			print $message;
+
+	if(!$success)
+		{
+			?>
+<body >
+            <form style="margin-bottom: 0;" action=reg.phtml method=post>
+                <div class='bold-line'></div>
+                <div class='container'>
+                <div class='window'>
+                    <div class='overlay'></div>
+                    <div class='content'>
+                    <div class='welcome'>Регистрация</div>
+                    <div class='input-fields'>
+                        <input type='mail' name=mail   value="<?print $mail?>" placeholder='E-mail' class='input-line full-width'></input>
+                        <input type='text' name=login value="<?print $login?>" placeholder='Логин' class='input-line full-width'></input>
+                        <input type='password' name=pass value="" placeholder='Пароль' class='input-line full-width'></input>
+                        <input type='password' name=pass2 value="" placeholder='Подтверждение пароля' class='input-line full-width'></input>
+                        
+                        <div class="check">
+                            <br>
+                            <i>Подписаться на новости</i>
+                            <input type="checkbox" value="1" name="subscribe" class='chk' >
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+		                </div>    
+                        <input type=hidden value=1 name=type>
+                    </div>
+
+                    <div><button class='ghost-round full-width'>Регистрация</button></div>
+                    </div>
+                </div>
+                </div>
+            </form>
+            </body>
+<? mysqli_close($connection);
+   }
+   include("footer.phtml");
+?>

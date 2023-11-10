@@ -1,0 +1,86 @@
+<? $start = session_start();
+include("admin_header.phtml"); ?>
+
+<head> 
+ <link href="css/admin_authorization.css" rel="stylesheet">
+</head>
+<?
+$title = "Форма авторизации";
+
+$pass = $_POST["pass"];
+$login = $_POST["login"];
+$type = $_POST["type"];
+include("connect.phtml");
+?>
+
+<?
+if ($type == 2) {
+ $strSQL1 = "SELECT * FROM admins WHERE login='" . $login . "' AND pass='" . $pass . "'";
+ $result1 = mysqli_query($connection, $strSQL1) or die("Не могу выполнить запрос!");
+
+ if ($row = mysqli_fetch_array($result1)) {
+  // $start=session_start();
+
+  $_SESSION["log"] = $row["id_admin"] . " " . $row["im"] . " " . $row["fam"] . " " . $row["position"];
+  // $log=$_SESSION["log"];
+
+  $_SESSION["id"] = $row["id_admin"];
+
+  $_SESSION["orders"] = $row["orders"];
+  $_SESSION["items_cats_themes"] = $row["items_cats_themes"];
+  $_SESSION["callbacks"] = $row["callbacks"];
+  $_SESSION["customers"] = $row["customers"];
+  $_SESSION["admins"] = $row["admins"];
+  // $id=$_SESSION["id"];
+  $message = "<div class='subtitlediv'><div class='subdiv'><div class='subtitle2'><b>Авторизация прошла успешно.</b> </div></div></div>";
+
+  $success = true;
+ } else {
+  $success = false;
+  $message = "<div class='subtitle'><b>Введенных Вами логина и пароля не существует.</b></div>";
+ }
+}
+print $message;
+
+?>
+
+
+<?
+if (!$success) {
+?>
+
+ <body>
+  <form style="margin-bottom: 0;" action=authorization.phtml method=post>
+   <div class='bold-line'></div>
+   <div class='container'>
+    <div class='window'>
+     <div class='overlay'></div>
+     <div class='content'>
+      <div class='welcome'>Авторизация</div>
+      <div class='input-fields'>
+       <input type='text' name=login value="<? print $login ?>" placeholder='Логин' class='input-line full-width'></input>
+       <input type='password' name=pass value="" placeholder='Пароль' class='input-line full-width'></input>
+
+       <br>
+       <br>
+
+       <br>
+       <br>
+      </div>
+      <input type=hidden value=2 name=type>
+     </div>
+
+     <div><button class='ghost-round '> Войти </button></div>
+    </div>
+   </div>
+
+  </form>
+ </body>
+<?
+} ?>
+
+<?
+mysqli_close($connection);
+
+include("admin_footer.phtml");
+?>

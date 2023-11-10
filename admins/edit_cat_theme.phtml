@@ -1,0 +1,159 @@
+<?$start=session_start();
+$log=$_SESSION["log"];
+if(!isset($log)){include("authorization.phtml");} else{
+    $items_cats_themes=$_SESSION["items_cats_themes"];
+    if($items_cats_themes!=2){?>Ошибка! У вас нет доступа к редактированию категорий и тем.<?} else{
+
+include("admin_header.phtml");
+include("connect.phtml");?>
+<html>
+<head>
+<link href="css/edit_cat_theme.css" rel="stylesheet">
+</head>
+
+
+<?
+$id_cat = $_GET["id_cat"];
+$id_theme = $_GET["id_theme"];
+
+
+
+$name_cat=$_POST["name_cat"];
+$name_theme=$_POST["name_theme"];
+$cat = $_GET["cat"];
+$theme = $_GET["theme"];
+$mykey=$_POST["mykey"];
+
+$title1="Товаров данной категории - ";
+$title2="Товаров данной тематики - ";
+    include("admin_cabinet_nav.phtml");   
+?>
+
+        <?
+        if ($cat==1){
+            $strSQL="SELECT * FROM categories  WHERE id_cat='".$id_cat."'";
+            $result=mysqli_query($connection, $strSQL)or die("Не могу выполнить запрос!"); 
+            if($row=mysqli_fetch_array($result))
+            {
+                if ($mykey==1){
+                    if($name_cat!="")
+                    {
+                        $strSQL1="UPDATE categories SET name_cat='".$name_cat."'  WHERE id_cat=".$id_cat;			
+                        $result1=mysqli_query($connection, $strSQL1) or die("Не могу выполнить запрос!");	               
+                        $message="<div class='mes2'><b>Изменение данных выполнено успешно!</b> </div>";                 
+                    }
+                    else
+                        $message="<div class='mes'><b>Нельзя оставить название категории пустым!</b> </div>"; 
+                }
+                    
+            print $message;	
+        ?>
+
+
+        <form class="my-form" action=edit_cat_theme.phtml?cat=1&id_cat=<?print $id_cat;?> method=post>
+        <?
+            $str="SELECT * FROM items WHERE id_cat='".$id_cat."'";			
+            $res1=mysqli_query($connection, $str) or die("Не могу выполнить запрос2!");
+            $allkolvo_cat=0; 
+            while($row=mysqli_fetch_array($res1))
+            {
+                $allkolvo_cat=$allkolvo_cat+1;
+            }
+
+            $strSQL1="SELECT * FROM categories WHERE id_cat='".$id_cat."'";			
+            $result1=mysqli_query($connection, $strSQL1) or die("Не могу выполнить запрос2!");
+            ?>
+            <div class="shopping-cart">
+                <div>
+                    <div class="title1">
+                    <a href="admin_index.phtml?type=6">Вернуться к списку категорий и тем</a>
+                    </div>
+                </div>
+                <? 
+                while($row=mysqli_fetch_array($result1))
+                {
+                    ?>
+                    <div class="item">
+                        <div class="description">
+                            <span1>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><font color="#727272">№&nbsp;<?print $row["id_cat"];?></font></b>&nbsp;&nbsp;
+                                <input class='input-line-h4' name="name_cat" type="text" value="<?if ($mykey==1) Echo $_POST['name_cat'];else print $row["name_cat"];?>"></input>
+                            </span1>
+                            <br>
+                            <input class="button" type="submit" value="Сохранить">  
+                        </div> 
+                            
+                    </div>
+                    <?
+                }
+                ?> 
+            </div>
+            <input type=hidden value=1 name=mykey>
+        </form>
+            <?	
+        }
+    }
+?>
+
+<?
+    if ($theme==1){
+            $strSQL="SELECT * FROM themes  WHERE id_theme='".$id_theme."'";
+            $result=mysqli_query($connection, $strSQL)or die("Не могу выполнить запрос!"); 
+            if($row=mysqli_fetch_array($result))
+            {
+                if ($mykey==1){
+                    if($name_theme!="")
+                    {
+                        $strSQL1="UPDATE themes SET name_theme='".$name_theme."'  WHERE id_theme=".$id_theme;			
+                        $result1=mysqli_query($connection, $strSQL1) or die("Не могу выполнить запрос!");	               
+                        $message="<div class='mes2'><b>Изменение данных выполнено успешно!</b> </div>";                 
+                    }
+                    else
+                        $message="<div class='mes'><b>Нельзя оставить название категории пустым!</b> </div>"; 
+                }
+                    
+            print $message;	
+        ?>
+
+
+        <form class="my-form" action=edit_cat_theme.phtml?theme=1&id_theme=<?print $id_theme;?> method=post>
+        <?
+            $strSQL1="SELECT * FROM themes WHERE id_theme='".$id_theme."'";			
+            $result1=mysqli_query($connection, $strSQL1) or die("Не могу выполнить запрос2!");
+            ?>
+            <div class="shopping-cart">
+                <div>
+                    <div class="title1">
+                    <a href="admin_index.phtml?type=6">Вернуться к списку категорий и тем</a>
+                    </div>
+                </div>
+                <? 
+                while($row=mysqli_fetch_array($result1))
+                {
+                    ?>
+                    <div class="item">
+                        <div class="description">
+                            <span1>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><font color="#727272">№&nbsp;<?print $row["id_theme"];?></font></b>&nbsp;&nbsp;
+                                <input class='input-line-h4' name="name_theme" type="text" value="<?if ($mykey==1) Echo $_POST['name_theme'];else print $row["name_theme"];?>"></input>
+                            </span1>
+                            <br>
+                            <input class="button" type="submit" value="Сохранить">  
+                        </div> 
+                            
+                    </div>
+                    <?
+                }
+                ?> 
+            </div>
+            <input type=hidden value=1 name=mykey>
+        </form>
+            <?	
+        }
+    }
+?>
+
+<?
+include("admin_footer.phtml");
+?>
+<?}}?>

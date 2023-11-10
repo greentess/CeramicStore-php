@@ -1,0 +1,283 @@
+body{
+    background: rgb(188,186,183); 
+    margin: 0;
+  }
+  input {
+    border: none;
+  }
+  button:focus {
+    outline: none;
+  }
+  ::-webkit-input-placeholder {
+    color: rgba(47, 45, 45, 0.65);
+  }
+  
+  .input-line:focus {
+    outline: none;
+    border-color: rgb(144, 179, 149);
+    -webkit-transition: all .2s ease;
+    transition: all .2s ease;
+  }
+  
+  .ghost-round {
+      cursor: pointer;
+      background: none;
+      border: 1px solid rgba(85, 100, 78, 0.65);
+      border-radius: 25px;
+      color: rgba(30, 29, 29, 0.65);
+      -webkit-align-self: flex-end;
+      -ms-flex-item-align: end;
+      align-self: flex-end;
+      font-size: 19px;
+      font-size: 1.2rem;
+      font-family:Helvetica;
+      font-weight: 300;
+      line-height: 2.5em;
+      margin-top: auto;
+      margin-bottom: 25px;
+      margin-left: 5%;
+      -webkit-transition: all .2s ease;
+      transition: all .2s ease;
+      width: 90%;
+    }
+  
+  .ghost-round:hover {
+    background: rgba(124, 154, 115, 0.65);
+    color: rgba(67, 85, 67, 0.993);
+    -webkit-transition: all .2s ease;
+    transition: all .2s ease;
+  }
+  
+  .input-line {
+    background: none;
+    margin-bottom: 10px;
+    line-height: 2.4em;
+    color: rgb(52, 51, 51);
+    font-family: Helvetica;
+    font-weight: 300;
+    letter-spacing: 0px;
+    letter-spacing: 0.02rem;
+    font-size: 19px;
+    font-size: 1.2rem;
+    border-bottom: 1px solid rgba(149, 147, 147, 0.65);
+    -webkit-transition: all .2s ease;
+    transition: all .2s ease;
+  }
+  
+  .full-width {
+    width: 100%;
+  }
+  
+  .input-fields {
+    margin-top: 25px;
+  }
+  
+  .container {
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    /* background: #eceae6; */
+    height: 76.2%;
+    max-height: 76.2%;
+    min-height: 76.2;
+    background-image: url("../картинки/фончик.jpg") ;
+    background-size: cover;
+    z-index: -10;
+  }
+  
+  .container::before {
+    background: #00000034; 
+    z-index: 1;
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 76.2%;
+  }
+  
+  .table1 {
+    background: rgb(188,186,183); 
+  }
+  .table2 {
+    background: rgb(116,120,111); 
+  }
+  .menu{
+    background: rgb(188,186,183); 
+  }
+  .granica {
+    border-bottom: 1px solid rgb(116,120,111);
+    }
+  
+  
+  
+  .content {
+    padding-left: 25px;
+    padding-right: 25px;
+    display: flex;
+    -webkit-flex-flow: column;
+    -ms-flex-flow: column;
+    flex-flow: column;
+    z-index: 5;
+    background: #fff;
+  }
+  .chk{
+      width: 30px;
+      height: 30px;
+      color: rgb(153, 179, 147);
+      border: #808080;
+      margin-top: 5px;
+      vertical-align: middle;
+  
+  }
+  .check i{
+      margin-bottom: 10px;  
+      color: rgb(52, 51, 51);
+      font-family: Helvetica;
+      font-weight: 300;
+      font-size: 1rem; 
+      vertical-align: middle;
+      margin-left: 20%;
+  }
+  .welcome {
+    font-weight: 200;
+    margin-top: 25px;
+    text-align: center;
+    font-size: 40px;
+    font-size: 2.5rem;
+    letter-spacing: 0px;
+    letter-spacing: 0.05rem;
+  }
+  
+  .subtitle {
+    text-align: center;
+    line-height: 1em;
+    font-weight: 100;
+    letter-spacing: 0px;
+    letter-spacing: 0.02rem;
+  
+    color: rgb(161, 30, 30);
+    position: absolute;
+    padding-top: 40px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .subtitlereg {
+    text-align: center;
+    line-height: 1em;
+    font-weight: 100;
+    letter-spacing: 0px;
+    letter-spacing: 0.02rem;
+    color: rgb(65, 77, 60);
+    margin-left: 20%;
+    width: 100%;
+    text-align: center;
+  }
+
+
+.subtitlereg a {
+  font-weight: lighter;
+  color:#415743;
+  transition: ease .25s;
+  font-family:  Helvetica;
+  text-decoration: underline;
+}
+.subtitlereg a:hover
+{
+    font-weight:bold;
+    color: #4e7055;
+    text-decoration:underline;
+}
+
+  .subtitle2 {
+    text-align: center;
+    line-height: 1em;
+    font-weight: 100;
+    letter-spacing: 0px;
+    letter-spacing: 0.02rem;
+    margin-top: 15%;
+    margin-left: 33%;
+    color: rgb(69, 84, 64);
+    font-size: 2vw;
+
+    position: absolute;
+  }
+  
+  .subtitlediv {
+    width: 100%;
+    height: 76.2%;
+    background-image: url("../картинки/фончик.jpg") ;
+    
+    background-size:cover;
+    z-index: -10;
+  
+  }
+  
+  
+  .subtitlediv::before {
+    background: #00000034; 
+    z-index: 1;
+    position: absolute;
+    content: "";
+    width: 100%;
+    max-height: 76.3%;
+    height: 76.2%;
+    min-height: 76.1%;
+  }
+  
+  
+  .window {
+      z-index: 100;
+      color: rgb(34, 33, 33);
+      font-family: Helvetica;
+      position: relative;
+      display: flex;
+      -webkit-flex-flow: column;
+      -ms-flex-flow: column;
+      flex-flow: column;
+      box-shadow: 0px 15px 50px 10px rgba(0, 0, 0, 0.2);
+      box-sizing: border-box;
+      height: 400px;
+      width: 500px;
+      background: #fff;
+
+         }
+         .myfooter{
+          background-color: rgb(116, 121, 109);
+          min-height:110.5px ;
+          border-top: 1px solid #45554c;
+          padding-bottom: 5%;
+        }
+  
+  .bold-line {
+  background: #e7e7e7;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    margin: auto;
+    width: 100%;
+    height: 360px;
+    z-index: 1;
+    opacity:0.1;
+      background: url('https://pexels.imgix.net/photos/27718/pexels-photo-27718.jpg?fit=crop&w=1280&h=823') left no-repeat;
+    background-size:cover;
+  }
+  
+  @media (max-width: 500px) {
+    .window {
+      width: 100%;
+      height: 100%;
+    }
+    .overlay {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  body{
+      background: #eceae6; 
+  }

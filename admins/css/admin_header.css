@@ -1,0 +1,81 @@
+body{
+    margin: 0;
+}
+table { 
+    table-layout: fixed; 
+    position: relative; 
+    width: 100%; 
+    border-spacing: 0px; 
+    border-collapse: collapse;
+    } 
+.granica {
+    border-bottom: 1px solid rgb(156, 173, 154);
+    height: 40px;
+    }
+.polosasverhu {
+    font-size: 0.5vw; 
+    text-align: center; 
+    height:30px;  
+    color:#ffffff; 
+    background: #92978c; 
+    letter-spacing: 0.145vw;
+    }
+.menu {
+    height: 40px; 
+    background: #eceae6; 
+    }
+.menu p.menu-links {
+    font-size: 20px;
+    font-weight: lighter;
+    color:#3a2f2c;
+    transition: ease .25s;
+    font-family:  Helvetica;
+    text-decoration: none;
+}
+.menu p.menu-links a {
+    display: inline-block;
+    text-decoration: none;
+    color:inherit;
+    transition: ease .25s;
+    font-family:  Helvetica;
+    font-size: 15px;
+}
+.menu p.menu-links a:hover
+{
+    font-weight:bold;
+    color: #705e4e;
+    text-decoration:underline;
+    font-size: 20px;
+}
+p.text
+{
+    border:2px #030303  solid; 
+    padding: 4% 5% 5% 2.5%; 
+    font-size: 1vw;
+    text-align: center;
+    
+}
+p.text:hover
+{
+    color: #705e4e;
+    border:2px #ac9d9d  solid;
+}
+
+
+.menu p.menu-links1 {
+    font-size: 20px;
+    font-weight: lighter;
+    color:#3a2f2c;
+    transition: ease .25s;
+    font-family:  Helvetica;
+    text-decoration: none;
+}
+.menu p.menu-links1 a {
+    display: inline-block;
+    text-decoration: none;
+    color:inherit;
+    transition: ease .25s;
+    font-family:  Helvetica;
+    font-size: 15px;
+}
+

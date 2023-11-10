@@ -1,0 +1,267 @@
+<? $start = session_start(); ?>
+<html>
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="css/info_admin.css" rel="stylesheet">
+	<link src="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<?
+$title = "Карточка сотрудника";
+$log = $_SESSION["log"];
+$id = $_SESSION["id"];
+$mykey = $_POST["mykey"];
+$id_admin = $_GET["id_admin"];
+if (!isset($log)) {
+	$success = false;
+	$message = "<div class='subdiv'><div class='subtitle2'><b>Вы не авторизованы.</b></div></div>";
+} else
+	$success = true;
+print $message;
+?>
+<?
+if ($success) {
+	include("connect.phtml");
+	$strSQL = "SELECT * FROM admins WHERE id_admin='" . $id . "'";
+	$result = mysqli_query($connection, $strSQL) or die("Не могу выполнить запрос!");
+	if ($row = mysqli_fetch_array($result)) {
+?>
+		<div class="my-ddiv">
+			<table class="tab-title">
+				<tr>
+					<td class="td11">Мои данные</td>
+					<td class="td11">
+						<div class="d-polosa"> <a href="edit_admin_cabinet.phtml?id_admin=<? print $row["id_admin"]; ?>"><button class="but">Изменить</button></a></div>
+					</td>
+				</tr>
+			</table>
+			<table class="form-table">
+				<tr>
+					<td>
+						<div class="input1">
+							ФИО:
+						</div>
+					</td>
+					<td>
+						<div class="input">
+							&nbsp;<? print $row["fam"]; ?>
+							<? print $row["im"]; ?>
+							<? print $row["otch"]; ?>
+						</div>
+					</td>
+				</tr>
+
+				<tr>
+					<td>
+						<div class="input1">
+							Дата рождения:
+						</div>
+					</td>
+					<td>
+						<div class="input">
+							&nbsp;<? print $row["birthday"]; ?>
+						</div>
+					</td>
+				</tr>
+
+				<tr>
+					<td>
+						<div class="input1">
+							Должность:
+						</div>
+					</td>
+					<td>
+						<div class="input">
+							&nbsp;<? print $row["position"]; ?>
+						</div>
+					</td>
+				</tr>
+
+				<tr>
+					<td>
+						<div class="input1">
+							Контакты:
+						</div>
+					</td>
+					<td>
+						<div class="input">
+							&nbsp;<b>почта </b><? print $row["mail"]; ?>,<br>&nbsp;<b>тел. </b><? print $row["phone"]; ?>
+						</div>
+					</td>
+				</tr>
+
+				<tr>
+					<td>
+						<div class="input1">
+							Аккаунт:
+						</div>
+					</td>
+					<td>
+						<div class="input">
+							&nbsp;<b>логин </b><? print $row["login"]; ?>, <b>пароль </b><? print $row["pass"]; ?>
+						</div>
+					</td>
+				</tr>
+			</table>
+
+			<input type=hidden value=1 name=mykey>
+			<table class="tab-title">
+				<tr>
+					<td class="td11" style="text-align: left; padding-left:70px;">Мой доступ</td>
+				</tr>
+			</table>
+
+			<div class="dostup">
+				<table class="f">
+					<tr>
+						<td>
+							<div class="i">
+								&nbsp;Работа с заказами:
+							</div>
+						</td>
+					</tr>
+				</table>
+
+				<div class="container">
+					<div id="radios">
+						<label for="нет доступа" class="material-icons">
+							<input type="radio" name="mode" id="нет доступа" value=0 disabled <? if ($row["orders"] == 0) { ?>checked<? } ?> />
+							<span><a><i class="fas fa-ban"></i></a></span>
+						</label>
+
+						<label for="просмотр" class="material-icons">
+							<input type="radio" name="mode" id="просмотр" value=1 disabled <? if ($row["orders"] == 1) { ?>checked<? } ?> />
+							<span><a><i class="fas fa-eye"></i></a></span>
+						</label>
+
+						<label for="изменение" class="material-icons">
+							<input type="radio" name="mode" id="изменение" value=2 disabled <? if ($row["orders"] == 2) { ?>checked<? } ?> />
+							<span><a><i class="fas fa-feather"></i></a></span>
+						</label>
+					</div>
+				</div>
+
+				<table class="f">
+					<tr>
+						<td>
+							<div class="i">
+						&nbsp;Работа с товарами/категориями/тематиками:
+							</div>
+						</td>
+					</tr>
+				</table>
+
+				<div class="container">
+					<div id="radios">
+						<label for="нет доступа" class="material-icons">
+							<input type="radio" name="mode1" id="нет доступа" value=0 disabled <? if ($row["items_cats_themes"] == 0) { ?>checked<? } ?> />
+							<span><a><i class="fas fa-ban"></i></a></span>
+						</label>
+
+						<label for="просмотр" class="material-icons">
+							<input type="radio" name="mode1" id="просмотр" value=1 disabled <? if ($row["items_cats_themes"] == 1) { ?>checked<? } ?> />
+							<span><a><i class="fas fa-eye"></i></a></span>
+						</label>
+
+						<label for="изменение" class="material-icons">
+							<input type="radio" name="mode1" id="изменение" value=2 disabled <? if ($row["items_cats_themes"] == 2) { ?>checked<? } ?> />
+							<span><a><i class="fas fa-feather"></i></a></span>
+						</label>
+					</div>
+				</div>
+				<table class="f">
+					<tr>
+						<td>
+							<div class="i">
+								&nbsp;Работа со звонками:
+							</div>
+						</td>
+					</tr>
+				</table>
+
+				<div class="container">
+					<div id="radios">
+						<label for="нет доступа" class="material-icons">
+							<input type="radio" name="mode2" id="нет доступа" value=0 disabled <? if ($row["callbacks"] == 0) { ?>checked<? } ?> />
+							<span><a><i class="fas fa-ban"></i></a></span>
+						</label>
+
+						<label for="просмотр" class="material-icons">
+							<input type="radio" name="mode2" id="просмотр" value=1 disabled <? if ($row["callbacks"] == 1) { ?>checked<? } ?> />
+							<span><a><i class="fas fa-eye"></i></a></span>
+						</label>
+
+						<label for="изменение" class="material-icons">
+							<input type="radio" name="mode2" id="изменение" value=2 disabled <? if ($row["callbacks"] == 2) { ?>checked<? } ?> />
+							<span><a><i class="fas fa-feather"></i></a></span>
+						</label>
+					</div>
+				</div>
+				<table class="f">
+					<tr>
+						<td>
+							<div class="i">
+								&nbsp;Работа с покупателями:
+							</div>
+						</td>
+					</tr>
+				</table>
+
+				<div class="container">
+					<div id="radios">
+						<label for="нет доступа" class="material-icons">
+							<input type="radio" name="mode3" id="нет доступа" value=0 disabled <? if ($row["customers"] == 0) { ?>checked<? } ?> />
+							<span><a><i class="fas fa-ban"></i></a></span>
+						</label>
+
+						<label for="просмотрg" class="material-icons">
+							<input type="radio" name="mode3" id="просмотр" value=1 disabled <? if ($row["customers"] == 1) { ?>checked<? } ?> />
+							<span><a><i class="fas fa-eye"></i></a></span>
+						</label>
+
+						<label for="изменение" class="material-icons">
+							<input type="radio" name="mode3" id="изменение" value=2 disabled <? if ($row["customers"] == 2) { ?>checked<? } ?> />
+							<span><a><i class="fas fa-feather"></i></a></span>
+						</label>
+					</div>
+				</div>
+				<table class="f">
+					<tr>
+						<td>
+							<div class="i">
+								&nbsp;Работа с сотрудниками:
+							</div>
+						</td>
+					</tr>
+				</table>
+
+				<div class="container">
+					<div id="radios">
+						<label for="нет доступа" class="material-icons">
+							<input type="radio" name="mode4" id="нет доступа" value=0 disabled <? if ($row["admins"] == 0) { ?>checked<? } ?> />
+							<span><a><i class="fas fa-ban"></i></a></span>
+						</label>
+
+						<label for="просмотр" class="material-icons">
+							<input type="radio" name="mode4" id="просмотр" value=1 disabled <? if ($row["admins"] == 1) { ?>checked<? } ?> />
+							<span><a><i class="fas fa-eye"></i></a></span>
+						</label>
+
+						<label for="изменение" class="material-icons">
+							<input type="radio" name="mode4" id="изменение" value=2 disabled <? if ($row["admins"] == 2) { ?>checked<? } ?> />
+							<span><a><i class="fas fa-feather"></i></a></span>
+						</label>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	<?
+	}
+	?>
+<?
+	mysqli_close($connection);
+}
+?>
+
+</html>
